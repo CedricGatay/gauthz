@@ -40,6 +40,7 @@
 //! This crate has one Cargo feature, `tls`, which adds HTTPS support via the `Tokens::new`
 //! constructor. This feature is enabled by default.
 #![warn(missing_docs)]
+#![feature(async_closure)]
 
 #[macro_use]
 extern crate serde_derive;
@@ -60,25 +61,30 @@ use std::io::Read;
 use std::time::{Duration, Instant};
 
 use futures::{Future as StdFuture, Stream as StdStream, future, stream};
-use hyper::{Client as HyperClient, Method, Request};
-use hyper::client::{Connect, HttpConnector};
-use hyper::header::ContentType;
+use hyper::{Client as HyperClient, Method, Request, Body};
+use hyper::client::connect::Connect;
+use hyper::client::{HttpConnector};
+
 #[cfg(feature = "tls")]
 use hyper_tls::HttpsConnector;
 use medallion::{Algorithm, Header, Payload, Token};
 use tokio_core::reactor::Handle;
 
 pub mod error;
+
 use error::*;
 pub use error::{Error, Result};
+
 mod scope;
+
 pub use scope::*;
+use std::pin::Pin;
 
 /// A `Future` with an error type pinned to `gauthz::Error`
-pub type Future<T> = Box<StdFuture<Item = T, Error = Error>>;
+pub type Future<T> = Box<StdFuture<Output=T>>;
 
 /// A `Stream` with an error type pinned to `gauthz::Error`
-pub type Stream<T> = Box<StdStream<Item = T, Error = Error>>;
+pub type Stream<T> = Box<StdStream<Item=T>>;
 
 const TOKEN_URL: &str = "https://www.googleapis.com/oauth2/v4/token";
 
@@ -110,8 +116,8 @@ impl Credentials {
     /// Convenience method for parsing credentials from a reader
     /// ( i.e. a `std::fs:File` )
     pub fn from_reader<R>(r: R) -> Result<Credentials>
-    where
-        R: Read,
+        where
+            R: Read,
     {
         serde_json::from_reader(r).map_err(Error::from)
     }
@@ -174,8 +180,8 @@ impl AccessToken {
 /// provide access to multiple apis
 #[derive(Clone)]
 pub struct Tokens<C>
-where
-    C: Connect + Clone,
+    where
+        C: 'static + Connect + Clone + Send + Sync,
 {
     http: HyperClient<C>,
     credentials: Credentials,
@@ -193,19 +199,19 @@ impl Tokens<HttpsConnector<HttpConnector>> {
         credentials: Credentials,
         scopes: Iter,
     ) -> Self
-    where
-        Iter: ::std::iter::IntoIterator<Item = Scope>,
+        where
+            Iter: ::std::iter::IntoIterator<Item=Scope>,
     {
-        let connector = HttpsConnector::new(4, handle).unwrap();
-        let hyper = HyperClient::configure()
-            .connector(connector)
+        let connector = HttpsConnector::new();
+        let hyper = HyperClient::builder()
+            //.connector(connector)
             .keep_alive(true)
-            .build(handle);
+            .build(connector);
         Tokens::custom(hyper, credentials, scopes)
     }
 }
 
-impl<C: Connect + Clone> Tokens<C> {
+impl<C: 'static + Connect + Clone + Send + Sync> Tokens<C> {
     /// Creates a new instance of `Tokens` with a custom `hyper::Client`
     /// with a customly configured `hyper::Client`
     pub fn custom<Iter>(
@@ -213,8 +219,8 @@ impl<C: Connect + Clone> Tokens<C> {
         credentials: Credentials,
         scopes: Iter,
     ) -> Self
-    where
-        Iter: ::std::iter::IntoIterator<Item = Scope>,
+        where
+            Iter: ::std::iter::IntoIterator<Item=Scope>,
     {
         Self {
             http,
@@ -226,35 +232,51 @@ impl<C: Connect + Clone> Tokens<C> {
                 .join(","),
         }
     }
-
+/*
     /// Returns a `Stream` of `AccessTokens`. The same `AccessToken` will be
     /// yielded multiple times until it is expired. After which, a new token
     /// will be fetched
     pub fn stream(&self) -> Stream<AccessToken> {
         let instance = self.clone();
         let tokens =
+            stream::unfold(None, async move |state: Option<AccessToken>| -> Option<(AccessToken, Option<AccessToken>)>{
+                let instance = instance.clone();
+                match state {
+                    Some(ref token) if !token.expired() => {
+                        Some((token.clone(), state.clone()))
+                    },
+                    _ => {
+                        let token = instance.get().await.ok()?;
+                        let next = Some(token.clone());
+                        Some((token.clone(), next))
+
+                        //future::ok((None, state.clone())).await.ok()
+                    }
+                }
+            });
+        /*
             stream::unfold::<
                 _,
                 _,
                 Future<(AccessToken, Option<AccessToken>)>,
                 _,
             >(None, move |state| {
-                Some(match state {
+                match state {
                     Some(ref token) if !token.expired() => {
                         Box::new(future::ok((token.clone(), state.clone())))
                     }
                     _ => {
-                        Box::new(instance.get().map(|token| {
+                        Box::new(async {instance.get().await.map(|token| {
                             let next = Some(token.clone());
                             (token, next)
-                        }))
+                        }).unwrap()})
                     }
-                })
-            });
+                }
+            });*/
         Box::new(tokens)
     }
-
-    fn new_request(&self) -> Request {
+*/
+    fn new_request(&self) -> Request<Body> {
         let header: Header<()> = Header {
             alg: Algorithm::RS256,
             ..Default::default()
@@ -274,40 +296,42 @@ impl<C: Connect + Clone> Tokens<C> {
         let signed = Token::new(header, payload)
             .sign(&self.credentials.clone().private_key.into_bytes())
             .unwrap();
-        let mut req = Request::new(Method::Post, TOKEN_URL.parse().unwrap());
-        req.headers_mut().set(ContentType::form_url_encoded());
-        let body = format!(
+        let body = Body::from(format!(
             "grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&assertion={assertion}",
             assertion = signed.as_str()
-        );
-        req.set_body(body);
+        ));
+        let req = Request::builder().uri(TOKEN_URL).method(Method::POST)
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .body(body).unwrap();
         req
     }
 
     /// Returns a `Future` yielding a new `AccessToken`
-    pub fn get(&self) -> Future<AccessToken> {
-        Box::new(
-            self.http
-                .request(self.new_request())
-                .map_err(Error::from)
-                .and_then(|response| {
-                    let status = response.status();
-                    let body = response.body().concat2().map_err(Error::from);
+    pub fn get(&'static self) -> Pin<Box<StdFuture<Output = Result<AccessToken>>>> {
+        Box::pin(async move {
+            let response = self.http
+                .request(self.new_request()).await
+                .map_err(|e| Error::from(e.to_string()))?;
+            let status = response.status();
+            let bytes = hyper::body::to_bytes(response).await?;
+            serde_json::from_slice::<AccessToken>(&bytes)
+                .map_err(|err| ErrorKind::Codec(err).into())
+                .map(AccessToken::start)
+                    /*let body = response.body();//concat2().map_err(Error::from);
                     body.and_then(move |body| if status.is_success() {
-                        serde_json::from_slice::<AccessToken>(&body)
+                        serde_json::from_str::<AccessToken>(&body)
                             .map_err(|err| ErrorKind::Codec(err).into())
                             .map(AccessToken::start)
                     } else {
-                        Err(match serde_json::from_slice::<ApiError>(&body) {
+                        Err(match serde_json::from_str::<ApiError>(&body) {
                             Err(err) => ErrorKind::Codec(err).into(),
                             Ok(err) => {
                                 ErrorKind::Api(err.error, err.error_description)
                                     .into()
                             }
                         })
-                    })
-                }),
-        )
+                    })*/
+        })
     }
 }
 

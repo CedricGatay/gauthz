@@ -9,6 +9,7 @@ repository = "https://github.com/softprops/gauthz"
 keywords = ["gcp", "oauth2", "google", "api"]
 license = "MIT"
 readme = "README.md"
+edition = "2018"
 
 [badges]
 travis-ci = { repository = "softprops/gauthz" }
@@ -16,8 +17,8 @@ coveralls = { repository = "softprops/gauthz" }
 
 [dependencies]
 error-chain = "0.10"
-futures = "0.1"
-hyper = "0.11"
+futures = "0.3"
+hyper = "0.13"
 medallion="2.2"
 serde = "1.0"
 serde_json = "1.0"
@@ -27,7 +28,7 @@ tokio-core = "0.1"
 
 [dependencies.hyper-tls]
 optional = true
-version = "0.1.2"
+version = "0.4"
 
 [features]
 default = ["tls"]
