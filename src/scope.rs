@@ -1,5 +1,3 @@
-
-
 use std::str::FromStr;
 
 impl FromStr for Scope {
@@ -449,7 +447,7 @@ pub enum Scope {
     /// Scope for https://www.googleapis.com/auth/yt-analytics.readonly
     YtAnalyticsReadonly,
     /// A custom API scope
-    Custom(&'static str)
+    Custom(&'static str),
 }
 impl Scope {
     /// Return url assocaited with scope
@@ -1643,48 +1641,120 @@ mod tests {
     use super::*;
     #[test]
     fn test_activity() {
-        assert_eq!("https://www.googleapis.com/auth/activity", Scope::Activity.url());
-        assert_eq!("https://www.googleapis.com/auth/activity".parse::<Scope>().unwrap(), Scope::Activity);
+        assert_eq!(
+            "https://www.googleapis.com/auth/activity",
+            Scope::Activity.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/activity"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Activity
+        );
     }
     #[test]
     fn test_adexchangebuyer() {
-        assert_eq!("https://www.googleapis.com/auth/adexchange.buyer", Scope::AdexchangeBuyer.url());
-        assert_eq!("https://www.googleapis.com/auth/adexchange.buyer".parse::<Scope>().unwrap(), Scope::AdexchangeBuyer);
+        assert_eq!(
+            "https://www.googleapis.com/auth/adexchange.buyer",
+            Scope::AdexchangeBuyer.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/adexchange.buyer"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::AdexchangeBuyer
+        );
     }
     #[test]
     fn test_adexchangeseller() {
-        assert_eq!("https://www.googleapis.com/auth/adexchange.seller", Scope::AdexchangeSeller.url());
-        assert_eq!("https://www.googleapis.com/auth/adexchange.seller".parse::<Scope>().unwrap(), Scope::AdexchangeSeller);
+        assert_eq!(
+            "https://www.googleapis.com/auth/adexchange.seller",
+            Scope::AdexchangeSeller.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/adexchange.seller"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::AdexchangeSeller
+        );
     }
     #[test]
     fn test_adexchangesellerreadonly() {
-        assert_eq!("https://www.googleapis.com/auth/adexchange.seller.readonly", Scope::AdexchangeSellerReadonly.url());
-        assert_eq!("https://www.googleapis.com/auth/adexchange.seller.readonly".parse::<Scope>().unwrap(), Scope::AdexchangeSellerReadonly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/adexchange.seller.readonly",
+            Scope::AdexchangeSellerReadonly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/adexchange.seller.readonly"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::AdexchangeSellerReadonly
+        );
     }
     #[test]
     fn test_admindatatransfer() {
-        assert_eq!("https://www.googleapis.com/auth/admin.datatransfer", Scope::AdminDatatransfer.url());
-        assert_eq!("https://www.googleapis.com/auth/admin.datatransfer".parse::<Scope>().unwrap(), Scope::AdminDatatransfer);
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.datatransfer",
+            Scope::AdminDatatransfer.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.datatransfer"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::AdminDatatransfer
+        );
     }
     #[test]
     fn test_admindatatransferreadonly() {
-        assert_eq!("https://www.googleapis.com/auth/admin.datatransfer.readonly", Scope::AdminDatatransferReadonly.url());
-        assert_eq!("https://www.googleapis.com/auth/admin.datatransfer.readonly".parse::<Scope>().unwrap(), Scope::AdminDatatransferReadonly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.datatransfer.readonly",
+            Scope::AdminDatatransferReadonly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.datatransfer.readonly"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::AdminDatatransferReadonly
+        );
     }
     #[test]
     fn test_admindirectorycustomer() {
-        assert_eq!("https://www.googleapis.com/auth/admin.directory.customer", Scope::AdminDirectoryCustomer.url());
-        assert_eq!("https://www.googleapis.com/auth/admin.directory.customer".parse::<Scope>().unwrap(), Scope::AdminDirectoryCustomer);
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.directory.customer",
+            Scope::AdminDirectoryCustomer.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.directory.customer"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::AdminDirectoryCustomer
+        );
     }
     #[test]
     fn test_admindirectorycustomerreadonly() {
-        assert_eq!("https://www.googleapis.com/auth/admin.directory.customer.readonly", Scope::AdminDirectoryCustomerReadonly.url());
-        assert_eq!("https://www.googleapis.com/auth/admin.directory.customer.readonly".parse::<Scope>().unwrap(), Scope::AdminDirectoryCustomerReadonly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.directory.customer.readonly",
+            Scope::AdminDirectoryCustomerReadonly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.directory.customer.readonly"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::AdminDirectoryCustomerReadonly
+        );
     }
     #[test]
     fn test_admindirectorydevicechromeos() {
-        assert_eq!("https://www.googleapis.com/auth/admin.directory.device.chromeos", Scope::AdminDirectoryDeviceChromeos.url());
-        assert_eq!("https://www.googleapis.com/auth/admin.directory.device.chromeos".parse::<Scope>().unwrap(), Scope::AdminDirectoryDeviceChromeos);
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.directory.device.chromeos",
+            Scope::AdminDirectoryDeviceChromeos.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.directory.device.chromeos"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::AdminDirectoryDeviceChromeos
+        );
     }
     #[test]
     fn test_admindirectorydevicechromeosreadonly() {
@@ -1693,8 +1763,16 @@ mod tests {
     }
     #[test]
     fn test_admindirectorydevicemobile() {
-        assert_eq!("https://www.googleapis.com/auth/admin.directory.device.mobile", Scope::AdminDirectoryDeviceMobile.url());
-        assert_eq!("https://www.googleapis.com/auth/admin.directory.device.mobile".parse::<Scope>().unwrap(), Scope::AdminDirectoryDeviceMobile);
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.directory.device.mobile",
+            Scope::AdminDirectoryDeviceMobile.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.directory.device.mobile"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::AdminDirectoryDeviceMobile
+        );
     }
     #[test]
     fn test_admindirectorydevicemobileaction() {
@@ -1708,23 +1786,55 @@ mod tests {
     }
     #[test]
     fn test_admindirectorydomain() {
-        assert_eq!("https://www.googleapis.com/auth/admin.directory.domain", Scope::AdminDirectoryDomain.url());
-        assert_eq!("https://www.googleapis.com/auth/admin.directory.domain".parse::<Scope>().unwrap(), Scope::AdminDirectoryDomain);
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.directory.domain",
+            Scope::AdminDirectoryDomain.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.directory.domain"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::AdminDirectoryDomain
+        );
     }
     #[test]
     fn test_admindirectorydomainreadonly() {
-        assert_eq!("https://www.googleapis.com/auth/admin.directory.domain.readonly", Scope::AdminDirectoryDomainReadonly.url());
-        assert_eq!("https://www.googleapis.com/auth/admin.directory.domain.readonly".parse::<Scope>().unwrap(), Scope::AdminDirectoryDomainReadonly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.directory.domain.readonly",
+            Scope::AdminDirectoryDomainReadonly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.directory.domain.readonly"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::AdminDirectoryDomainReadonly
+        );
     }
     #[test]
     fn test_admindirectorygroup() {
-        assert_eq!("https://www.googleapis.com/auth/admin.directory.group", Scope::AdminDirectoryGroup.url());
-        assert_eq!("https://www.googleapis.com/auth/admin.directory.group".parse::<Scope>().unwrap(), Scope::AdminDirectoryGroup);
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.directory.group",
+            Scope::AdminDirectoryGroup.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.directory.group"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::AdminDirectoryGroup
+        );
     }
     #[test]
     fn test_admindirectorygroupmember() {
-        assert_eq!("https://www.googleapis.com/auth/admin.directory.group.member", Scope::AdminDirectoryGroupMember.url());
-        assert_eq!("https://www.googleapis.com/auth/admin.directory.group.member".parse::<Scope>().unwrap(), Scope::AdminDirectoryGroupMember);
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.directory.group.member",
+            Scope::AdminDirectoryGroupMember.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.directory.group.member"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::AdminDirectoryGroupMember
+        );
     }
     #[test]
     fn test_admindirectorygroupmemberreadonly() {
@@ -1733,28 +1843,68 @@ mod tests {
     }
     #[test]
     fn test_admindirectorygroupreadonly() {
-        assert_eq!("https://www.googleapis.com/auth/admin.directory.group.readonly", Scope::AdminDirectoryGroupReadonly.url());
-        assert_eq!("https://www.googleapis.com/auth/admin.directory.group.readonly".parse::<Scope>().unwrap(), Scope::AdminDirectoryGroupReadonly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.directory.group.readonly",
+            Scope::AdminDirectoryGroupReadonly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.directory.group.readonly"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::AdminDirectoryGroupReadonly
+        );
     }
     #[test]
     fn test_admindirectorynotifications() {
-        assert_eq!("https://www.googleapis.com/auth/admin.directory.notifications", Scope::AdminDirectoryNotifications.url());
-        assert_eq!("https://www.googleapis.com/auth/admin.directory.notifications".parse::<Scope>().unwrap(), Scope::AdminDirectoryNotifications);
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.directory.notifications",
+            Scope::AdminDirectoryNotifications.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.directory.notifications"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::AdminDirectoryNotifications
+        );
     }
     #[test]
     fn test_admindirectoryorgunit() {
-        assert_eq!("https://www.googleapis.com/auth/admin.directory.orgunit", Scope::AdminDirectoryOrgunit.url());
-        assert_eq!("https://www.googleapis.com/auth/admin.directory.orgunit".parse::<Scope>().unwrap(), Scope::AdminDirectoryOrgunit);
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.directory.orgunit",
+            Scope::AdminDirectoryOrgunit.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.directory.orgunit"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::AdminDirectoryOrgunit
+        );
     }
     #[test]
     fn test_admindirectoryorgunitreadonly() {
-        assert_eq!("https://www.googleapis.com/auth/admin.directory.orgunit.readonly", Scope::AdminDirectoryOrgunitReadonly.url());
-        assert_eq!("https://www.googleapis.com/auth/admin.directory.orgunit.readonly".parse::<Scope>().unwrap(), Scope::AdminDirectoryOrgunitReadonly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.directory.orgunit.readonly",
+            Scope::AdminDirectoryOrgunitReadonly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.directory.orgunit.readonly"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::AdminDirectoryOrgunitReadonly
+        );
     }
     #[test]
     fn test_admindirectoryresourcecalendar() {
-        assert_eq!("https://www.googleapis.com/auth/admin.directory.resource.calendar", Scope::AdminDirectoryResourceCalendar.url());
-        assert_eq!("https://www.googleapis.com/auth/admin.directory.resource.calendar".parse::<Scope>().unwrap(), Scope::AdminDirectoryResourceCalendar);
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.directory.resource.calendar",
+            Scope::AdminDirectoryResourceCalendar.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.directory.resource.calendar"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::AdminDirectoryResourceCalendar
+        );
     }
     #[test]
     fn test_admindirectoryresourcecalendarreadonly() {
@@ -1763,8 +1913,16 @@ mod tests {
     }
     #[test]
     fn test_admindirectoryrolemanagement() {
-        assert_eq!("https://www.googleapis.com/auth/admin.directory.rolemanagement", Scope::AdminDirectoryRolemanagement.url());
-        assert_eq!("https://www.googleapis.com/auth/admin.directory.rolemanagement".parse::<Scope>().unwrap(), Scope::AdminDirectoryRolemanagement);
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.directory.rolemanagement",
+            Scope::AdminDirectoryRolemanagement.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.directory.rolemanagement"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::AdminDirectoryRolemanagement
+        );
     }
     #[test]
     fn test_admindirectoryrolemanagementreadonly() {
@@ -1773,13 +1931,29 @@ mod tests {
     }
     #[test]
     fn test_admindirectoryuser() {
-        assert_eq!("https://www.googleapis.com/auth/admin.directory.user", Scope::AdminDirectoryUser.url());
-        assert_eq!("https://www.googleapis.com/auth/admin.directory.user".parse::<Scope>().unwrap(), Scope::AdminDirectoryUser);
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.directory.user",
+            Scope::AdminDirectoryUser.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.directory.user"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::AdminDirectoryUser
+        );
     }
     #[test]
     fn test_admindirectoryuseralias() {
-        assert_eq!("https://www.googleapis.com/auth/admin.directory.user.alias", Scope::AdminDirectoryUserAlias.url());
-        assert_eq!("https://www.googleapis.com/auth/admin.directory.user.alias".parse::<Scope>().unwrap(), Scope::AdminDirectoryUserAlias);
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.directory.user.alias",
+            Scope::AdminDirectoryUserAlias.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.directory.user.alias"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::AdminDirectoryUserAlias
+        );
     }
     #[test]
     fn test_admindirectoryuseraliasreadonly() {
@@ -1788,18 +1962,42 @@ mod tests {
     }
     #[test]
     fn test_admindirectoryuserreadonly() {
-        assert_eq!("https://www.googleapis.com/auth/admin.directory.user.readonly", Scope::AdminDirectoryUserReadonly.url());
-        assert_eq!("https://www.googleapis.com/auth/admin.directory.user.readonly".parse::<Scope>().unwrap(), Scope::AdminDirectoryUserReadonly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.directory.user.readonly",
+            Scope::AdminDirectoryUserReadonly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.directory.user.readonly"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::AdminDirectoryUserReadonly
+        );
     }
     #[test]
     fn test_admindirectoryusersecurity() {
-        assert_eq!("https://www.googleapis.com/auth/admin.directory.user.security", Scope::AdminDirectoryUserSecurity.url());
-        assert_eq!("https://www.googleapis.com/auth/admin.directory.user.security".parse::<Scope>().unwrap(), Scope::AdminDirectoryUserSecurity);
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.directory.user.security",
+            Scope::AdminDirectoryUserSecurity.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.directory.user.security"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::AdminDirectoryUserSecurity
+        );
     }
     #[test]
     fn test_admindirectoryuserschema() {
-        assert_eq!("https://www.googleapis.com/auth/admin.directory.userschema", Scope::AdminDirectoryUserschema.url());
-        assert_eq!("https://www.googleapis.com/auth/admin.directory.userschema".parse::<Scope>().unwrap(), Scope::AdminDirectoryUserschema);
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.directory.userschema",
+            Scope::AdminDirectoryUserschema.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.directory.userschema"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::AdminDirectoryUserschema
+        );
     }
     #[test]
     fn test_admindirectoryuserschemareadonly() {
@@ -1808,168 +2006,429 @@ mod tests {
     }
     #[test]
     fn test_adminreportsauditreadonly() {
-        assert_eq!("https://www.googleapis.com/auth/admin.reports.audit.readonly", Scope::AdminReportsAuditReadonly.url());
-        assert_eq!("https://www.googleapis.com/auth/admin.reports.audit.readonly".parse::<Scope>().unwrap(), Scope::AdminReportsAuditReadonly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.reports.audit.readonly",
+            Scope::AdminReportsAuditReadonly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.reports.audit.readonly"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::AdminReportsAuditReadonly
+        );
     }
     #[test]
     fn test_adminreportsusagereadonly() {
-        assert_eq!("https://www.googleapis.com/auth/admin.reports.usage.readonly", Scope::AdminReportsUsageReadonly.url());
-        assert_eq!("https://www.googleapis.com/auth/admin.reports.usage.readonly".parse::<Scope>().unwrap(), Scope::AdminReportsUsageReadonly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.reports.usage.readonly",
+            Scope::AdminReportsUsageReadonly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/admin.reports.usage.readonly"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::AdminReportsUsageReadonly
+        );
     }
     #[test]
     fn test_adsense() {
-        assert_eq!("https://www.googleapis.com/auth/adsense", Scope::Adsense.url());
-        assert_eq!("https://www.googleapis.com/auth/adsense".parse::<Scope>().unwrap(), Scope::Adsense);
+        assert_eq!(
+            "https://www.googleapis.com/auth/adsense",
+            Scope::Adsense.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/adsense"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Adsense
+        );
     }
     #[test]
     fn test_adsensereadonly() {
-        assert_eq!("https://www.googleapis.com/auth/adsense.readonly", Scope::AdsenseReadonly.url());
-        assert_eq!("https://www.googleapis.com/auth/adsense.readonly".parse::<Scope>().unwrap(), Scope::AdsenseReadonly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/adsense.readonly",
+            Scope::AdsenseReadonly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/adsense.readonly"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::AdsenseReadonly
+        );
     }
     #[test]
     fn test_adsensehost() {
-        assert_eq!("https://www.googleapis.com/auth/adsensehost", Scope::Adsensehost.url());
-        assert_eq!("https://www.googleapis.com/auth/adsensehost".parse::<Scope>().unwrap(), Scope::Adsensehost);
+        assert_eq!(
+            "https://www.googleapis.com/auth/adsensehost",
+            Scope::Adsensehost.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/adsensehost"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Adsensehost
+        );
     }
     #[test]
     fn test_analytics() {
-        assert_eq!("https://www.googleapis.com/auth/analytics", Scope::Analytics.url());
-        assert_eq!("https://www.googleapis.com/auth/analytics".parse::<Scope>().unwrap(), Scope::Analytics);
+        assert_eq!(
+            "https://www.googleapis.com/auth/analytics",
+            Scope::Analytics.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/analytics"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Analytics
+        );
     }
     #[test]
     fn test_analyticsedit() {
-        assert_eq!("https://www.googleapis.com/auth/analytics.edit", Scope::AnalyticsEdit.url());
-        assert_eq!("https://www.googleapis.com/auth/analytics.edit".parse::<Scope>().unwrap(), Scope::AnalyticsEdit);
+        assert_eq!(
+            "https://www.googleapis.com/auth/analytics.edit",
+            Scope::AnalyticsEdit.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/analytics.edit"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::AnalyticsEdit
+        );
     }
     #[test]
     fn test_analyticsmanageusers() {
-        assert_eq!("https://www.googleapis.com/auth/analytics.manage.users", Scope::AnalyticsManageUsers.url());
-        assert_eq!("https://www.googleapis.com/auth/analytics.manage.users".parse::<Scope>().unwrap(), Scope::AnalyticsManageUsers);
+        assert_eq!(
+            "https://www.googleapis.com/auth/analytics.manage.users",
+            Scope::AnalyticsManageUsers.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/analytics.manage.users"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::AnalyticsManageUsers
+        );
     }
     #[test]
     fn test_analyticsmanageusersreadonly() {
-        assert_eq!("https://www.googleapis.com/auth/analytics.manage.users.readonly", Scope::AnalyticsManageUsersReadonly.url());
-        assert_eq!("https://www.googleapis.com/auth/analytics.manage.users.readonly".parse::<Scope>().unwrap(), Scope::AnalyticsManageUsersReadonly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/analytics.manage.users.readonly",
+            Scope::AnalyticsManageUsersReadonly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/analytics.manage.users.readonly"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::AnalyticsManageUsersReadonly
+        );
     }
     #[test]
     fn test_analyticsprovision() {
-        assert_eq!("https://www.googleapis.com/auth/analytics.provision", Scope::AnalyticsProvision.url());
-        assert_eq!("https://www.googleapis.com/auth/analytics.provision".parse::<Scope>().unwrap(), Scope::AnalyticsProvision);
+        assert_eq!(
+            "https://www.googleapis.com/auth/analytics.provision",
+            Scope::AnalyticsProvision.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/analytics.provision"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::AnalyticsProvision
+        );
     }
     #[test]
     fn test_analyticsreadonly() {
-        assert_eq!("https://www.googleapis.com/auth/analytics.readonly", Scope::AnalyticsReadonly.url());
-        assert_eq!("https://www.googleapis.com/auth/analytics.readonly".parse::<Scope>().unwrap(), Scope::AnalyticsReadonly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/analytics.readonly",
+            Scope::AnalyticsReadonly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/analytics.readonly"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::AnalyticsReadonly
+        );
     }
     #[test]
     fn test_androidenterprise() {
-        assert_eq!("https://www.googleapis.com/auth/androidenterprise", Scope::Androidenterprise.url());
-        assert_eq!("https://www.googleapis.com/auth/androidenterprise".parse::<Scope>().unwrap(), Scope::Androidenterprise);
+        assert_eq!(
+            "https://www.googleapis.com/auth/androidenterprise",
+            Scope::Androidenterprise.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/androidenterprise"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Androidenterprise
+        );
     }
     #[test]
     fn test_androidpublisher() {
-        assert_eq!("https://www.googleapis.com/auth/androidpublisher", Scope::Androidpublisher.url());
-        assert_eq!("https://www.googleapis.com/auth/androidpublisher".parse::<Scope>().unwrap(), Scope::Androidpublisher);
+        assert_eq!(
+            "https://www.googleapis.com/auth/androidpublisher",
+            Scope::Androidpublisher.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/androidpublisher"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Androidpublisher
+        );
     }
     #[test]
     fn test_appengineadmin() {
-        assert_eq!("https://www.googleapis.com/auth/appengine.admin", Scope::AppengineAdmin.url());
-        assert_eq!("https://www.googleapis.com/auth/appengine.admin".parse::<Scope>().unwrap(), Scope::AppengineAdmin);
+        assert_eq!(
+            "https://www.googleapis.com/auth/appengine.admin",
+            Scope::AppengineAdmin.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/appengine.admin"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::AppengineAdmin
+        );
     }
     #[test]
     fn test_appsgroupsmigration() {
-        assert_eq!("https://www.googleapis.com/auth/apps.groups.migration", Scope::AppsGroupsMigration.url());
-        assert_eq!("https://www.googleapis.com/auth/apps.groups.migration".parse::<Scope>().unwrap(), Scope::AppsGroupsMigration);
+        assert_eq!(
+            "https://www.googleapis.com/auth/apps.groups.migration",
+            Scope::AppsGroupsMigration.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/apps.groups.migration"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::AppsGroupsMigration
+        );
     }
     #[test]
     fn test_appsgroupssettings() {
-        assert_eq!("https://www.googleapis.com/auth/apps.groups.settings", Scope::AppsGroupsSettings.url());
-        assert_eq!("https://www.googleapis.com/auth/apps.groups.settings".parse::<Scope>().unwrap(), Scope::AppsGroupsSettings);
+        assert_eq!(
+            "https://www.googleapis.com/auth/apps.groups.settings",
+            Scope::AppsGroupsSettings.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/apps.groups.settings"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::AppsGroupsSettings
+        );
     }
     #[test]
     fn test_appslicensing() {
-        assert_eq!("https://www.googleapis.com/auth/apps.licensing", Scope::AppsLicensing.url());
-        assert_eq!("https://www.googleapis.com/auth/apps.licensing".parse::<Scope>().unwrap(), Scope::AppsLicensing);
+        assert_eq!(
+            "https://www.googleapis.com/auth/apps.licensing",
+            Scope::AppsLicensing.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/apps.licensing"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::AppsLicensing
+        );
     }
     #[test]
     fn test_appsorder() {
-        assert_eq!("https://www.googleapis.com/auth/apps.order", Scope::AppsOrder.url());
-        assert_eq!("https://www.googleapis.com/auth/apps.order".parse::<Scope>().unwrap(), Scope::AppsOrder);
+        assert_eq!(
+            "https://www.googleapis.com/auth/apps.order",
+            Scope::AppsOrder.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/apps.order"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::AppsOrder
+        );
     }
     #[test]
     fn test_appsorderreadonly() {
-        assert_eq!("https://www.googleapis.com/auth/apps.order.readonly", Scope::AppsOrderReadonly.url());
-        assert_eq!("https://www.googleapis.com/auth/apps.order.readonly".parse::<Scope>().unwrap(), Scope::AppsOrderReadonly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/apps.order.readonly",
+            Scope::AppsOrderReadonly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/apps.order.readonly"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::AppsOrderReadonly
+        );
     }
     #[test]
     fn test_appstate() {
-        assert_eq!("https://www.googleapis.com/auth/appstate", Scope::Appstate.url());
-        assert_eq!("https://www.googleapis.com/auth/appstate".parse::<Scope>().unwrap(), Scope::Appstate);
+        assert_eq!(
+            "https://www.googleapis.com/auth/appstate",
+            Scope::Appstate.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/appstate"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Appstate
+        );
     }
     #[test]
     fn test_bigquery() {
-        assert_eq!("https://www.googleapis.com/auth/bigquery", Scope::Bigquery.url());
-        assert_eq!("https://www.googleapis.com/auth/bigquery".parse::<Scope>().unwrap(), Scope::Bigquery);
+        assert_eq!(
+            "https://www.googleapis.com/auth/bigquery",
+            Scope::Bigquery.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/bigquery"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Bigquery
+        );
     }
     #[test]
     fn test_bigqueryinsertdata() {
-        assert_eq!("https://www.googleapis.com/auth/bigquery.insertdata", Scope::BigqueryInsertdata.url());
-        assert_eq!("https://www.googleapis.com/auth/bigquery.insertdata".parse::<Scope>().unwrap(), Scope::BigqueryInsertdata);
+        assert_eq!(
+            "https://www.googleapis.com/auth/bigquery.insertdata",
+            Scope::BigqueryInsertdata.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/bigquery.insertdata"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::BigqueryInsertdata
+        );
     }
     #[test]
     fn test_blogger() {
-        assert_eq!("https://www.googleapis.com/auth/blogger", Scope::Blogger.url());
-        assert_eq!("https://www.googleapis.com/auth/blogger".parse::<Scope>().unwrap(), Scope::Blogger);
+        assert_eq!(
+            "https://www.googleapis.com/auth/blogger",
+            Scope::Blogger.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/blogger"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Blogger
+        );
     }
     #[test]
     fn test_bloggerreadonly() {
-        assert_eq!("https://www.googleapis.com/auth/blogger.readonly", Scope::BloggerReadonly.url());
-        assert_eq!("https://www.googleapis.com/auth/blogger.readonly".parse::<Scope>().unwrap(), Scope::BloggerReadonly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/blogger.readonly",
+            Scope::BloggerReadonly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/blogger.readonly"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::BloggerReadonly
+        );
     }
     #[test]
     fn test_books() {
         assert_eq!("https://www.googleapis.com/auth/books", Scope::Books.url());
-        assert_eq!("https://www.googleapis.com/auth/books".parse::<Scope>().unwrap(), Scope::Books);
+        assert_eq!(
+            "https://www.googleapis.com/auth/books"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Books
+        );
     }
     #[test]
     fn test_calendar() {
-        assert_eq!("https://www.googleapis.com/auth/calendar", Scope::Calendar.url());
-        assert_eq!("https://www.googleapis.com/auth/calendar".parse::<Scope>().unwrap(), Scope::Calendar);
+        assert_eq!(
+            "https://www.googleapis.com/auth/calendar",
+            Scope::Calendar.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/calendar"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Calendar
+        );
     }
     #[test]
     fn test_calendarfeeds() {
-        assert_eq!("https://www.google.com/calendar/feeds", Scope::CalendarFeeds.url());
-        assert_eq!("https://www.google.com/calendar/feeds".parse::<Scope>().unwrap(), Scope::CalendarFeeds);
+        assert_eq!(
+            "https://www.google.com/calendar/feeds",
+            Scope::CalendarFeeds.url()
+        );
+        assert_eq!(
+            "https://www.google.com/calendar/feeds"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::CalendarFeeds
+        );
     }
     #[test]
     fn test_calendarreadonly() {
-        assert_eq!("https://www.googleapis.com/auth/calendar.readonly", Scope::CalendarReadonly.url());
-        assert_eq!("https://www.googleapis.com/auth/calendar.readonly".parse::<Scope>().unwrap(), Scope::CalendarReadonly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/calendar.readonly",
+            Scope::CalendarReadonly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/calendar.readonly"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::CalendarReadonly
+        );
     }
     #[test]
     fn test_classroomcourses() {
-        assert_eq!("https://www.googleapis.com/auth/classroom.courses", Scope::ClassroomCourses.url());
-        assert_eq!("https://www.googleapis.com/auth/classroom.courses".parse::<Scope>().unwrap(), Scope::ClassroomCourses);
+        assert_eq!(
+            "https://www.googleapis.com/auth/classroom.courses",
+            Scope::ClassroomCourses.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/classroom.courses"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::ClassroomCourses
+        );
     }
     #[test]
     fn test_classroomcoursesreadonly() {
-        assert_eq!("https://www.googleapis.com/auth/classroom.courses.readonly", Scope::ClassroomCoursesReadonly.url());
-        assert_eq!("https://www.googleapis.com/auth/classroom.courses.readonly".parse::<Scope>().unwrap(), Scope::ClassroomCoursesReadonly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/classroom.courses.readonly",
+            Scope::ClassroomCoursesReadonly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/classroom.courses.readonly"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::ClassroomCoursesReadonly
+        );
     }
     #[test]
     fn test_classroomcourseworkme() {
-        assert_eq!("https://www.googleapis.com/auth/classroom.coursework.me", Scope::ClassroomCourseworkMe.url());
-        assert_eq!("https://www.googleapis.com/auth/classroom.coursework.me".parse::<Scope>().unwrap(), Scope::ClassroomCourseworkMe);
+        assert_eq!(
+            "https://www.googleapis.com/auth/classroom.coursework.me",
+            Scope::ClassroomCourseworkMe.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/classroom.coursework.me"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::ClassroomCourseworkMe
+        );
     }
     #[test]
     fn test_classroomcourseworkmereadonly() {
-        assert_eq!("https://www.googleapis.com/auth/classroom.coursework.me.readonly", Scope::ClassroomCourseworkMeReadonly.url());
-        assert_eq!("https://www.googleapis.com/auth/classroom.coursework.me.readonly".parse::<Scope>().unwrap(), Scope::ClassroomCourseworkMeReadonly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/classroom.coursework.me.readonly",
+            Scope::ClassroomCourseworkMeReadonly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/classroom.coursework.me.readonly"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::ClassroomCourseworkMeReadonly
+        );
     }
     #[test]
     fn test_classroomcourseworkstudents() {
-        assert_eq!("https://www.googleapis.com/auth/classroom.coursework.students", Scope::ClassroomCourseworkStudents.url());
-        assert_eq!("https://www.googleapis.com/auth/classroom.coursework.students".parse::<Scope>().unwrap(), Scope::ClassroomCourseworkStudents);
+        assert_eq!(
+            "https://www.googleapis.com/auth/classroom.coursework.students",
+            Scope::ClassroomCourseworkStudents.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/classroom.coursework.students"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::ClassroomCourseworkStudents
+        );
     }
     #[test]
     fn test_classroomcourseworkstudentsreadonly() {
@@ -1983,8 +2442,16 @@ mod tests {
     }
     #[test]
     fn test_classroomguardianlinksstudents() {
-        assert_eq!("https://www.googleapis.com/auth/classroom.guardianlinks.students", Scope::ClassroomGuardianlinksStudents.url());
-        assert_eq!("https://www.googleapis.com/auth/classroom.guardianlinks.students".parse::<Scope>().unwrap(), Scope::ClassroomGuardianlinksStudents);
+        assert_eq!(
+            "https://www.googleapis.com/auth/classroom.guardianlinks.students",
+            Scope::ClassroomGuardianlinksStudents.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/classroom.guardianlinks.students"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::ClassroomGuardianlinksStudents
+        );
     }
     #[test]
     fn test_classroomguardianlinksstudentsreadonly() {
@@ -1993,23 +2460,55 @@ mod tests {
     }
     #[test]
     fn test_classroomprofileemails() {
-        assert_eq!("https://www.googleapis.com/auth/classroom.profile.emails", Scope::ClassroomProfileEmails.url());
-        assert_eq!("https://www.googleapis.com/auth/classroom.profile.emails".parse::<Scope>().unwrap(), Scope::ClassroomProfileEmails);
+        assert_eq!(
+            "https://www.googleapis.com/auth/classroom.profile.emails",
+            Scope::ClassroomProfileEmails.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/classroom.profile.emails"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::ClassroomProfileEmails
+        );
     }
     #[test]
     fn test_classroomprofilephotos() {
-        assert_eq!("https://www.googleapis.com/auth/classroom.profile.photos", Scope::ClassroomProfilePhotos.url());
-        assert_eq!("https://www.googleapis.com/auth/classroom.profile.photos".parse::<Scope>().unwrap(), Scope::ClassroomProfilePhotos);
+        assert_eq!(
+            "https://www.googleapis.com/auth/classroom.profile.photos",
+            Scope::ClassroomProfilePhotos.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/classroom.profile.photos"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::ClassroomProfilePhotos
+        );
     }
     #[test]
     fn test_classroomrosters() {
-        assert_eq!("https://www.googleapis.com/auth/classroom.rosters", Scope::ClassroomRosters.url());
-        assert_eq!("https://www.googleapis.com/auth/classroom.rosters".parse::<Scope>().unwrap(), Scope::ClassroomRosters);
+        assert_eq!(
+            "https://www.googleapis.com/auth/classroom.rosters",
+            Scope::ClassroomRosters.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/classroom.rosters"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::ClassroomRosters
+        );
     }
     #[test]
     fn test_classroomrostersreadonly() {
-        assert_eq!("https://www.googleapis.com/auth/classroom.rosters.readonly", Scope::ClassroomRostersReadonly.url());
-        assert_eq!("https://www.googleapis.com/auth/classroom.rosters.readonly".parse::<Scope>().unwrap(), Scope::ClassroomRostersReadonly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/classroom.rosters.readonly",
+            Scope::ClassroomRostersReadonly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/classroom.rosters.readonly"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::ClassroomRostersReadonly
+        );
     }
     #[test]
     fn test_classroomstudentsubmissionsmereadonly() {
@@ -2023,697 +2522,1787 @@ mod tests {
     }
     #[test]
     fn test_clouddebugger() {
-        assert_eq!("https://www.googleapis.com/auth/cloud_debugger", Scope::CloudDebugger.url());
-        assert_eq!("https://www.googleapis.com/auth/cloud_debugger".parse::<Scope>().unwrap(), Scope::CloudDebugger);
+        assert_eq!(
+            "https://www.googleapis.com/auth/cloud_debugger",
+            Scope::CloudDebugger.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/cloud_debugger"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::CloudDebugger
+        );
     }
     #[test]
     fn test_cloudlanguage() {
-        assert_eq!("https://www.googleapis.com/auth/cloud-language", Scope::CloudLanguage.url());
-        assert_eq!("https://www.googleapis.com/auth/cloud-language".parse::<Scope>().unwrap(), Scope::CloudLanguage);
+        assert_eq!(
+            "https://www.googleapis.com/auth/cloud-language",
+            Scope::CloudLanguage.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/cloud-language"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::CloudLanguage
+        );
     }
     #[test]
     fn test_cloudplatform() {
-        assert_eq!("https://www.googleapis.com/auth/cloud-platform", Scope::CloudPlatform.url());
-        assert_eq!("https://www.googleapis.com/auth/cloud-platform".parse::<Scope>().unwrap(), Scope::CloudPlatform);
+        assert_eq!(
+            "https://www.googleapis.com/auth/cloud-platform",
+            Scope::CloudPlatform.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/cloud-platform"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::CloudPlatform
+        );
     }
     #[test]
     fn test_cloudplatformreadonly() {
-        assert_eq!("https://www.googleapis.com/auth/cloud-platform.read-only", Scope::CloudPlatformReadOnly.url());
-        assert_eq!("https://www.googleapis.com/auth/cloud-platform.read-only".parse::<Scope>().unwrap(), Scope::CloudPlatformReadOnly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/cloud-platform.read-only",
+            Scope::CloudPlatformReadOnly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/cloud-platform.read-only"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::CloudPlatformReadOnly
+        );
     }
     #[test]
     fn test_cloudtranslation() {
-        assert_eq!("https://www.googleapis.com/auth/cloud-translation", Scope::CloudTranslation.url());
-        assert_eq!("https://www.googleapis.com/auth/cloud-translation".parse::<Scope>().unwrap(), Scope::CloudTranslation);
+        assert_eq!(
+            "https://www.googleapis.com/auth/cloud-translation",
+            Scope::CloudTranslation.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/cloud-translation"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::CloudTranslation
+        );
     }
     #[test]
     fn test_clouduseraccounts() {
-        assert_eq!("https://www.googleapis.com/auth/cloud.useraccounts", Scope::CloudUseraccounts.url());
-        assert_eq!("https://www.googleapis.com/auth/cloud.useraccounts".parse::<Scope>().unwrap(), Scope::CloudUseraccounts);
+        assert_eq!(
+            "https://www.googleapis.com/auth/cloud.useraccounts",
+            Scope::CloudUseraccounts.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/cloud.useraccounts"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::CloudUseraccounts
+        );
     }
     #[test]
     fn test_clouduseraccountsreadonly() {
-        assert_eq!("https://www.googleapis.com/auth/cloud.useraccounts.readonly", Scope::CloudUseraccountsReadonly.url());
-        assert_eq!("https://www.googleapis.com/auth/cloud.useraccounts.readonly".parse::<Scope>().unwrap(), Scope::CloudUseraccountsReadonly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/cloud.useraccounts.readonly",
+            Scope::CloudUseraccountsReadonly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/cloud.useraccounts.readonly"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::CloudUseraccountsReadonly
+        );
     }
     #[test]
     fn test_cloudruntimeconfig() {
-        assert_eq!("https://www.googleapis.com/auth/cloudruntimeconfig", Scope::Cloudruntimeconfig.url());
-        assert_eq!("https://www.googleapis.com/auth/cloudruntimeconfig".parse::<Scope>().unwrap(), Scope::Cloudruntimeconfig);
+        assert_eq!(
+            "https://www.googleapis.com/auth/cloudruntimeconfig",
+            Scope::Cloudruntimeconfig.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/cloudruntimeconfig"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Cloudruntimeconfig
+        );
     }
     #[test]
     fn test_compute() {
-        assert_eq!("https://www.googleapis.com/auth/compute", Scope::Compute.url());
-        assert_eq!("https://www.googleapis.com/auth/compute".parse::<Scope>().unwrap(), Scope::Compute);
+        assert_eq!(
+            "https://www.googleapis.com/auth/compute",
+            Scope::Compute.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/compute"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Compute
+        );
     }
     #[test]
     fn test_computereadonly() {
-        assert_eq!("https://www.googleapis.com/auth/compute.readonly", Scope::ComputeReadonly.url());
-        assert_eq!("https://www.googleapis.com/auth/compute.readonly".parse::<Scope>().unwrap(), Scope::ComputeReadonly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/compute.readonly",
+            Scope::ComputeReadonly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/compute.readonly"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::ComputeReadonly
+        );
     }
     #[test]
     fn test_contacts() {
-        assert_eq!("https://www.googleapis.com/auth/contacts", Scope::Contacts.url());
-        assert_eq!("https://www.googleapis.com/auth/contacts".parse::<Scope>().unwrap(), Scope::Contacts);
+        assert_eq!(
+            "https://www.googleapis.com/auth/contacts",
+            Scope::Contacts.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/contacts"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Contacts
+        );
     }
     #[test]
     fn test_contactsreadonly() {
-        assert_eq!("https://www.googleapis.com/auth/contacts.readonly", Scope::ContactsReadonly.url());
-        assert_eq!("https://www.googleapis.com/auth/contacts.readonly".parse::<Scope>().unwrap(), Scope::ContactsReadonly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/contacts.readonly",
+            Scope::ContactsReadonly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/contacts.readonly"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::ContactsReadonly
+        );
     }
     #[test]
     fn test_content() {
-        assert_eq!("https://www.googleapis.com/auth/content", Scope::Content.url());
-        assert_eq!("https://www.googleapis.com/auth/content".parse::<Scope>().unwrap(), Scope::Content);
+        assert_eq!(
+            "https://www.googleapis.com/auth/content",
+            Scope::Content.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/content"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Content
+        );
     }
     #[test]
     fn test_datastore() {
-        assert_eq!("https://www.googleapis.com/auth/datastore", Scope::Datastore.url());
-        assert_eq!("https://www.googleapis.com/auth/datastore".parse::<Scope>().unwrap(), Scope::Datastore);
+        assert_eq!(
+            "https://www.googleapis.com/auth/datastore",
+            Scope::Datastore.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/datastore"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Datastore
+        );
     }
     #[test]
     fn test_ddmconversions() {
-        assert_eq!("https://www.googleapis.com/auth/ddmconversions", Scope::Ddmconversions.url());
-        assert_eq!("https://www.googleapis.com/auth/ddmconversions".parse::<Scope>().unwrap(), Scope::Ddmconversions);
+        assert_eq!(
+            "https://www.googleapis.com/auth/ddmconversions",
+            Scope::Ddmconversions.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/ddmconversions"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Ddmconversions
+        );
     }
     #[test]
     fn test_devstoragefullcontrol() {
-        assert_eq!("https://www.googleapis.com/auth/devstorage.full_control", Scope::DevstorageFullControl.url());
-        assert_eq!("https://www.googleapis.com/auth/devstorage.full_control".parse::<Scope>().unwrap(), Scope::DevstorageFullControl);
+        assert_eq!(
+            "https://www.googleapis.com/auth/devstorage.full_control",
+            Scope::DevstorageFullControl.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/devstorage.full_control"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::DevstorageFullControl
+        );
     }
     #[test]
     fn test_devstoragereadonly() {
-        assert_eq!("https://www.googleapis.com/auth/devstorage.read_only", Scope::DevstorageReadOnly.url());
-        assert_eq!("https://www.googleapis.com/auth/devstorage.read_only".parse::<Scope>().unwrap(), Scope::DevstorageReadOnly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/devstorage.read_only",
+            Scope::DevstorageReadOnly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/devstorage.read_only"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::DevstorageReadOnly
+        );
     }
     #[test]
     fn test_devstoragereadwrite() {
-        assert_eq!("https://www.googleapis.com/auth/devstorage.read_write", Scope::DevstorageReadWrite.url());
-        assert_eq!("https://www.googleapis.com/auth/devstorage.read_write".parse::<Scope>().unwrap(), Scope::DevstorageReadWrite);
+        assert_eq!(
+            "https://www.googleapis.com/auth/devstorage.read_write",
+            Scope::DevstorageReadWrite.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/devstorage.read_write"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::DevstorageReadWrite
+        );
     }
     #[test]
     fn test_dfareporting() {
-        assert_eq!("https://www.googleapis.com/auth/dfareporting", Scope::Dfareporting.url());
-        assert_eq!("https://www.googleapis.com/auth/dfareporting".parse::<Scope>().unwrap(), Scope::Dfareporting);
+        assert_eq!(
+            "https://www.googleapis.com/auth/dfareporting",
+            Scope::Dfareporting.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/dfareporting"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Dfareporting
+        );
     }
     #[test]
     fn test_dfatrafficking() {
-        assert_eq!("https://www.googleapis.com/auth/dfatrafficking", Scope::Dfatrafficking.url());
-        assert_eq!("https://www.googleapis.com/auth/dfatrafficking".parse::<Scope>().unwrap(), Scope::Dfatrafficking);
+        assert_eq!(
+            "https://www.googleapis.com/auth/dfatrafficking",
+            Scope::Dfatrafficking.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/dfatrafficking"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Dfatrafficking
+        );
     }
     #[test]
     fn test_doubleclickbidmanager() {
-        assert_eq!("https://www.googleapis.com/auth/doubleclickbidmanager", Scope::Doubleclickbidmanager.url());
-        assert_eq!("https://www.googleapis.com/auth/doubleclickbidmanager".parse::<Scope>().unwrap(), Scope::Doubleclickbidmanager);
+        assert_eq!(
+            "https://www.googleapis.com/auth/doubleclickbidmanager",
+            Scope::Doubleclickbidmanager.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/doubleclickbidmanager"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Doubleclickbidmanager
+        );
     }
     #[test]
     fn test_doubleclicksearch() {
-        assert_eq!("https://www.googleapis.com/auth/doubleclicksearch", Scope::Doubleclicksearch.url());
-        assert_eq!("https://www.googleapis.com/auth/doubleclicksearch".parse::<Scope>().unwrap(), Scope::Doubleclicksearch);
+        assert_eq!(
+            "https://www.googleapis.com/auth/doubleclicksearch",
+            Scope::Doubleclicksearch.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/doubleclicksearch"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Doubleclicksearch
+        );
     }
     #[test]
     fn test_drive() {
         assert_eq!("https://www.googleapis.com/auth/drive", Scope::Drive.url());
-        assert_eq!("https://www.googleapis.com/auth/drive".parse::<Scope>().unwrap(), Scope::Drive);
+        assert_eq!(
+            "https://www.googleapis.com/auth/drive"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Drive
+        );
     }
     #[test]
     fn test_driveappdata() {
-        assert_eq!("https://www.googleapis.com/auth/drive.appdata", Scope::DriveAppdata.url());
-        assert_eq!("https://www.googleapis.com/auth/drive.appdata".parse::<Scope>().unwrap(), Scope::DriveAppdata);
+        assert_eq!(
+            "https://www.googleapis.com/auth/drive.appdata",
+            Scope::DriveAppdata.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/drive.appdata"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::DriveAppdata
+        );
     }
     #[test]
     fn test_drivefile() {
-        assert_eq!("https://www.googleapis.com/auth/drive.file", Scope::DriveFile.url());
-        assert_eq!("https://www.googleapis.com/auth/drive.file".parse::<Scope>().unwrap(), Scope::DriveFile);
+        assert_eq!(
+            "https://www.googleapis.com/auth/drive.file",
+            Scope::DriveFile.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/drive.file"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::DriveFile
+        );
     }
     #[test]
     fn test_drivemetadata() {
-        assert_eq!("https://www.googleapis.com/auth/drive.metadata", Scope::DriveMetadata.url());
-        assert_eq!("https://www.googleapis.com/auth/drive.metadata".parse::<Scope>().unwrap(), Scope::DriveMetadata);
+        assert_eq!(
+            "https://www.googleapis.com/auth/drive.metadata",
+            Scope::DriveMetadata.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/drive.metadata"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::DriveMetadata
+        );
     }
     #[test]
     fn test_drivemetadatareadonly() {
-        assert_eq!("https://www.googleapis.com/auth/drive.metadata.readonly", Scope::DriveMetadataReadonly.url());
-        assert_eq!("https://www.googleapis.com/auth/drive.metadata.readonly".parse::<Scope>().unwrap(), Scope::DriveMetadataReadonly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/drive.metadata.readonly",
+            Scope::DriveMetadataReadonly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/drive.metadata.readonly"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::DriveMetadataReadonly
+        );
     }
     #[test]
     fn test_drivephotosreadonly() {
-        assert_eq!("https://www.googleapis.com/auth/drive.photos.readonly", Scope::DrivePhotosReadonly.url());
-        assert_eq!("https://www.googleapis.com/auth/drive.photos.readonly".parse::<Scope>().unwrap(), Scope::DrivePhotosReadonly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/drive.photos.readonly",
+            Scope::DrivePhotosReadonly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/drive.photos.readonly"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::DrivePhotosReadonly
+        );
     }
     #[test]
     fn test_drivereadonly() {
-        assert_eq!("https://www.googleapis.com/auth/drive.readonly", Scope::DriveReadonly.url());
-        assert_eq!("https://www.googleapis.com/auth/drive.readonly".parse::<Scope>().unwrap(), Scope::DriveReadonly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/drive.readonly",
+            Scope::DriveReadonly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/drive.readonly"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::DriveReadonly
+        );
     }
     #[test]
     fn test_drivescripts() {
-        assert_eq!("https://www.googleapis.com/auth/drive.scripts", Scope::DriveScripts.url());
-        assert_eq!("https://www.googleapis.com/auth/drive.scripts".parse::<Scope>().unwrap(), Scope::DriveScripts);
+        assert_eq!(
+            "https://www.googleapis.com/auth/drive.scripts",
+            Scope::DriveScripts.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/drive.scripts"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::DriveScripts
+        );
     }
     #[test]
     fn test_firebase() {
-        assert_eq!("https://www.googleapis.com/auth/firebase", Scope::Firebase.url());
-        assert_eq!("https://www.googleapis.com/auth/firebase".parse::<Scope>().unwrap(), Scope::Firebase);
+        assert_eq!(
+            "https://www.googleapis.com/auth/firebase",
+            Scope::Firebase.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/firebase"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Firebase
+        );
     }
     #[test]
     fn test_firebasereadonly() {
-        assert_eq!("https://www.googleapis.com/auth/firebase.readonly", Scope::FirebaseReadonly.url());
-        assert_eq!("https://www.googleapis.com/auth/firebase.readonly".parse::<Scope>().unwrap(), Scope::FirebaseReadonly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/firebase.readonly",
+            Scope::FirebaseReadonly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/firebase.readonly"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::FirebaseReadonly
+        );
     }
     #[test]
     fn test_fitnessactivityread() {
-        assert_eq!("https://www.googleapis.com/auth/fitness.activity.read", Scope::FitnessActivityRead.url());
-        assert_eq!("https://www.googleapis.com/auth/fitness.activity.read".parse::<Scope>().unwrap(), Scope::FitnessActivityRead);
+        assert_eq!(
+            "https://www.googleapis.com/auth/fitness.activity.read",
+            Scope::FitnessActivityRead.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/fitness.activity.read"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::FitnessActivityRead
+        );
     }
     #[test]
     fn test_fitnessactivitywrite() {
-        assert_eq!("https://www.googleapis.com/auth/fitness.activity.write", Scope::FitnessActivityWrite.url());
-        assert_eq!("https://www.googleapis.com/auth/fitness.activity.write".parse::<Scope>().unwrap(), Scope::FitnessActivityWrite);
+        assert_eq!(
+            "https://www.googleapis.com/auth/fitness.activity.write",
+            Scope::FitnessActivityWrite.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/fitness.activity.write"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::FitnessActivityWrite
+        );
     }
     #[test]
     fn test_fitnessbloodglucoseread() {
-        assert_eq!("https://www.googleapis.com/auth/fitness.blood_glucose.read", Scope::FitnessBloodGlucoseRead.url());
-        assert_eq!("https://www.googleapis.com/auth/fitness.blood_glucose.read".parse::<Scope>().unwrap(), Scope::FitnessBloodGlucoseRead);
+        assert_eq!(
+            "https://www.googleapis.com/auth/fitness.blood_glucose.read",
+            Scope::FitnessBloodGlucoseRead.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/fitness.blood_glucose.read"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::FitnessBloodGlucoseRead
+        );
     }
     #[test]
     fn test_fitnessbloodglucosewrite() {
-        assert_eq!("https://www.googleapis.com/auth/fitness.blood_glucose.write", Scope::FitnessBloodGlucoseWrite.url());
-        assert_eq!("https://www.googleapis.com/auth/fitness.blood_glucose.write".parse::<Scope>().unwrap(), Scope::FitnessBloodGlucoseWrite);
+        assert_eq!(
+            "https://www.googleapis.com/auth/fitness.blood_glucose.write",
+            Scope::FitnessBloodGlucoseWrite.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/fitness.blood_glucose.write"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::FitnessBloodGlucoseWrite
+        );
     }
     #[test]
     fn test_fitnessbloodpressureread() {
-        assert_eq!("https://www.googleapis.com/auth/fitness.blood_pressure.read", Scope::FitnessBloodPressureRead.url());
-        assert_eq!("https://www.googleapis.com/auth/fitness.blood_pressure.read".parse::<Scope>().unwrap(), Scope::FitnessBloodPressureRead);
+        assert_eq!(
+            "https://www.googleapis.com/auth/fitness.blood_pressure.read",
+            Scope::FitnessBloodPressureRead.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/fitness.blood_pressure.read"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::FitnessBloodPressureRead
+        );
     }
     #[test]
     fn test_fitnessbloodpressurewrite() {
-        assert_eq!("https://www.googleapis.com/auth/fitness.blood_pressure.write", Scope::FitnessBloodPressureWrite.url());
-        assert_eq!("https://www.googleapis.com/auth/fitness.blood_pressure.write".parse::<Scope>().unwrap(), Scope::FitnessBloodPressureWrite);
+        assert_eq!(
+            "https://www.googleapis.com/auth/fitness.blood_pressure.write",
+            Scope::FitnessBloodPressureWrite.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/fitness.blood_pressure.write"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::FitnessBloodPressureWrite
+        );
     }
     #[test]
     fn test_fitnessbodyread() {
-        assert_eq!("https://www.googleapis.com/auth/fitness.body.read", Scope::FitnessBodyRead.url());
-        assert_eq!("https://www.googleapis.com/auth/fitness.body.read".parse::<Scope>().unwrap(), Scope::FitnessBodyRead);
+        assert_eq!(
+            "https://www.googleapis.com/auth/fitness.body.read",
+            Scope::FitnessBodyRead.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/fitness.body.read"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::FitnessBodyRead
+        );
     }
     #[test]
     fn test_fitnessbodytemperatureread() {
-        assert_eq!("https://www.googleapis.com/auth/fitness.body_temperature.read", Scope::FitnessBodyTemperatureRead.url());
-        assert_eq!("https://www.googleapis.com/auth/fitness.body_temperature.read".parse::<Scope>().unwrap(), Scope::FitnessBodyTemperatureRead);
+        assert_eq!(
+            "https://www.googleapis.com/auth/fitness.body_temperature.read",
+            Scope::FitnessBodyTemperatureRead.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/fitness.body_temperature.read"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::FitnessBodyTemperatureRead
+        );
     }
     #[test]
     fn test_fitnessbodytemperaturewrite() {
-        assert_eq!("https://www.googleapis.com/auth/fitness.body_temperature.write", Scope::FitnessBodyTemperatureWrite.url());
-        assert_eq!("https://www.googleapis.com/auth/fitness.body_temperature.write".parse::<Scope>().unwrap(), Scope::FitnessBodyTemperatureWrite);
+        assert_eq!(
+            "https://www.googleapis.com/auth/fitness.body_temperature.write",
+            Scope::FitnessBodyTemperatureWrite.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/fitness.body_temperature.write"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::FitnessBodyTemperatureWrite
+        );
     }
     #[test]
     fn test_fitnessbodywrite() {
-        assert_eq!("https://www.googleapis.com/auth/fitness.body.write", Scope::FitnessBodyWrite.url());
-        assert_eq!("https://www.googleapis.com/auth/fitness.body.write".parse::<Scope>().unwrap(), Scope::FitnessBodyWrite);
+        assert_eq!(
+            "https://www.googleapis.com/auth/fitness.body.write",
+            Scope::FitnessBodyWrite.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/fitness.body.write"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::FitnessBodyWrite
+        );
     }
     #[test]
     fn test_fitnesslocationread() {
-        assert_eq!("https://www.googleapis.com/auth/fitness.location.read", Scope::FitnessLocationRead.url());
-        assert_eq!("https://www.googleapis.com/auth/fitness.location.read".parse::<Scope>().unwrap(), Scope::FitnessLocationRead);
+        assert_eq!(
+            "https://www.googleapis.com/auth/fitness.location.read",
+            Scope::FitnessLocationRead.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/fitness.location.read"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::FitnessLocationRead
+        );
     }
     #[test]
     fn test_fitnesslocationwrite() {
-        assert_eq!("https://www.googleapis.com/auth/fitness.location.write", Scope::FitnessLocationWrite.url());
-        assert_eq!("https://www.googleapis.com/auth/fitness.location.write".parse::<Scope>().unwrap(), Scope::FitnessLocationWrite);
+        assert_eq!(
+            "https://www.googleapis.com/auth/fitness.location.write",
+            Scope::FitnessLocationWrite.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/fitness.location.write"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::FitnessLocationWrite
+        );
     }
     #[test]
     fn test_fitnessnutritionread() {
-        assert_eq!("https://www.googleapis.com/auth/fitness.nutrition.read", Scope::FitnessNutritionRead.url());
-        assert_eq!("https://www.googleapis.com/auth/fitness.nutrition.read".parse::<Scope>().unwrap(), Scope::FitnessNutritionRead);
+        assert_eq!(
+            "https://www.googleapis.com/auth/fitness.nutrition.read",
+            Scope::FitnessNutritionRead.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/fitness.nutrition.read"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::FitnessNutritionRead
+        );
     }
     #[test]
     fn test_fitnessnutritionwrite() {
-        assert_eq!("https://www.googleapis.com/auth/fitness.nutrition.write", Scope::FitnessNutritionWrite.url());
-        assert_eq!("https://www.googleapis.com/auth/fitness.nutrition.write".parse::<Scope>().unwrap(), Scope::FitnessNutritionWrite);
+        assert_eq!(
+            "https://www.googleapis.com/auth/fitness.nutrition.write",
+            Scope::FitnessNutritionWrite.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/fitness.nutrition.write"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::FitnessNutritionWrite
+        );
     }
     #[test]
     fn test_fitnessoxygensaturationread() {
-        assert_eq!("https://www.googleapis.com/auth/fitness.oxygen_saturation.read", Scope::FitnessOxygenSaturationRead.url());
-        assert_eq!("https://www.googleapis.com/auth/fitness.oxygen_saturation.read".parse::<Scope>().unwrap(), Scope::FitnessOxygenSaturationRead);
+        assert_eq!(
+            "https://www.googleapis.com/auth/fitness.oxygen_saturation.read",
+            Scope::FitnessOxygenSaturationRead.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/fitness.oxygen_saturation.read"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::FitnessOxygenSaturationRead
+        );
     }
     #[test]
     fn test_fitnessoxygensaturationwrite() {
-        assert_eq!("https://www.googleapis.com/auth/fitness.oxygen_saturation.write", Scope::FitnessOxygenSaturationWrite.url());
-        assert_eq!("https://www.googleapis.com/auth/fitness.oxygen_saturation.write".parse::<Scope>().unwrap(), Scope::FitnessOxygenSaturationWrite);
+        assert_eq!(
+            "https://www.googleapis.com/auth/fitness.oxygen_saturation.write",
+            Scope::FitnessOxygenSaturationWrite.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/fitness.oxygen_saturation.write"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::FitnessOxygenSaturationWrite
+        );
     }
     #[test]
     fn test_fitnessreproductivehealthread() {
-        assert_eq!("https://www.googleapis.com/auth/fitness.reproductive_health.read", Scope::FitnessReproductiveHealthRead.url());
-        assert_eq!("https://www.googleapis.com/auth/fitness.reproductive_health.read".parse::<Scope>().unwrap(), Scope::FitnessReproductiveHealthRead);
+        assert_eq!(
+            "https://www.googleapis.com/auth/fitness.reproductive_health.read",
+            Scope::FitnessReproductiveHealthRead.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/fitness.reproductive_health.read"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::FitnessReproductiveHealthRead
+        );
     }
     #[test]
     fn test_fitnessreproductivehealthwrite() {
-        assert_eq!("https://www.googleapis.com/auth/fitness.reproductive_health.write", Scope::FitnessReproductiveHealthWrite.url());
-        assert_eq!("https://www.googleapis.com/auth/fitness.reproductive_health.write".parse::<Scope>().unwrap(), Scope::FitnessReproductiveHealthWrite);
+        assert_eq!(
+            "https://www.googleapis.com/auth/fitness.reproductive_health.write",
+            Scope::FitnessReproductiveHealthWrite.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/fitness.reproductive_health.write"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::FitnessReproductiveHealthWrite
+        );
     }
     #[test]
     fn test_forms() {
         assert_eq!("https://www.googleapis.com/auth/forms", Scope::Forms.url());
-        assert_eq!("https://www.googleapis.com/auth/forms".parse::<Scope>().unwrap(), Scope::Forms);
+        assert_eq!(
+            "https://www.googleapis.com/auth/forms"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Forms
+        );
     }
     #[test]
     fn test_formscurrentonly() {
-        assert_eq!("https://www.googleapis.com/auth/forms.currentonly", Scope::FormsCurrentonly.url());
-        assert_eq!("https://www.googleapis.com/auth/forms.currentonly".parse::<Scope>().unwrap(), Scope::FormsCurrentonly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/forms.currentonly",
+            Scope::FormsCurrentonly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/forms.currentonly"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::FormsCurrentonly
+        );
     }
     #[test]
     fn test_fusiontables() {
-        assert_eq!("https://www.googleapis.com/auth/fusiontables", Scope::Fusiontables.url());
-        assert_eq!("https://www.googleapis.com/auth/fusiontables".parse::<Scope>().unwrap(), Scope::Fusiontables);
+        assert_eq!(
+            "https://www.googleapis.com/auth/fusiontables",
+            Scope::Fusiontables.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/fusiontables"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Fusiontables
+        );
     }
     #[test]
     fn test_fusiontablesreadonly() {
-        assert_eq!("https://www.googleapis.com/auth/fusiontables.readonly", Scope::FusiontablesReadonly.url());
-        assert_eq!("https://www.googleapis.com/auth/fusiontables.readonly".parse::<Scope>().unwrap(), Scope::FusiontablesReadonly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/fusiontables.readonly",
+            Scope::FusiontablesReadonly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/fusiontables.readonly"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::FusiontablesReadonly
+        );
     }
     #[test]
     fn test_games() {
         assert_eq!("https://www.googleapis.com/auth/games", Scope::Games.url());
-        assert_eq!("https://www.googleapis.com/auth/games".parse::<Scope>().unwrap(), Scope::Games);
+        assert_eq!(
+            "https://www.googleapis.com/auth/games"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Games
+        );
     }
     #[test]
     fn test_genomics() {
-        assert_eq!("https://www.googleapis.com/auth/genomics", Scope::Genomics.url());
-        assert_eq!("https://www.googleapis.com/auth/genomics".parse::<Scope>().unwrap(), Scope::Genomics);
+        assert_eq!(
+            "https://www.googleapis.com/auth/genomics",
+            Scope::Genomics.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/genomics"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Genomics
+        );
     }
     #[test]
     fn test_genomicsreadonly() {
-        assert_eq!("https://www.googleapis.com/auth/genomics.readonly", Scope::GenomicsReadonly.url());
-        assert_eq!("https://www.googleapis.com/auth/genomics.readonly".parse::<Scope>().unwrap(), Scope::GenomicsReadonly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/genomics.readonly",
+            Scope::GenomicsReadonly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/genomics.readonly"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::GenomicsReadonly
+        );
     }
     #[test]
     fn test_glasslocation() {
-        assert_eq!("https://www.googleapis.com/auth/glass.location", Scope::GlassLocation.url());
-        assert_eq!("https://www.googleapis.com/auth/glass.location".parse::<Scope>().unwrap(), Scope::GlassLocation);
+        assert_eq!(
+            "https://www.googleapis.com/auth/glass.location",
+            Scope::GlassLocation.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/glass.location"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::GlassLocation
+        );
     }
     #[test]
     fn test_glasstimeline() {
-        assert_eq!("https://www.googleapis.com/auth/glass.timeline", Scope::GlassTimeline.url());
-        assert_eq!("https://www.googleapis.com/auth/glass.timeline".parse::<Scope>().unwrap(), Scope::GlassTimeline);
+        assert_eq!(
+            "https://www.googleapis.com/auth/glass.timeline",
+            Scope::GlassTimeline.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/glass.timeline"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::GlassTimeline
+        );
     }
     #[test]
     fn test_gmail() {
         assert_eq!("https://mail.google.com/", Scope::Gmail.url());
-        assert_eq!("https://mail.google.com/".parse::<Scope>().unwrap(), Scope::Gmail);
+        assert_eq!(
+            "https://mail.google.com/".parse::<Scope>().unwrap(),
+            Scope::Gmail
+        );
     }
     #[test]
     fn test_gmailcompose() {
-        assert_eq!("https://www.googleapis.com/auth/gmail.compose", Scope::GmailCompose.url());
-        assert_eq!("https://www.googleapis.com/auth/gmail.compose".parse::<Scope>().unwrap(), Scope::GmailCompose);
+        assert_eq!(
+            "https://www.googleapis.com/auth/gmail.compose",
+            Scope::GmailCompose.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/gmail.compose"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::GmailCompose
+        );
     }
     #[test]
     fn test_gmailinsert() {
-        assert_eq!("https://www.googleapis.com/auth/gmail.insert", Scope::GmailInsert.url());
-        assert_eq!("https://www.googleapis.com/auth/gmail.insert".parse::<Scope>().unwrap(), Scope::GmailInsert);
+        assert_eq!(
+            "https://www.googleapis.com/auth/gmail.insert",
+            Scope::GmailInsert.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/gmail.insert"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::GmailInsert
+        );
     }
     #[test]
     fn test_gmaillabels() {
-        assert_eq!("https://www.googleapis.com/auth/gmail.labels", Scope::GmailLabels.url());
-        assert_eq!("https://www.googleapis.com/auth/gmail.labels".parse::<Scope>().unwrap(), Scope::GmailLabels);
+        assert_eq!(
+            "https://www.googleapis.com/auth/gmail.labels",
+            Scope::GmailLabels.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/gmail.labels"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::GmailLabels
+        );
     }
     #[test]
     fn test_gmailmetadata() {
-        assert_eq!("https://www.googleapis.com/auth/gmail.metadata", Scope::GmailMetadata.url());
-        assert_eq!("https://www.googleapis.com/auth/gmail.metadata".parse::<Scope>().unwrap(), Scope::GmailMetadata);
+        assert_eq!(
+            "https://www.googleapis.com/auth/gmail.metadata",
+            Scope::GmailMetadata.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/gmail.metadata"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::GmailMetadata
+        );
     }
     #[test]
     fn test_gmailmodify() {
-        assert_eq!("https://www.googleapis.com/auth/gmail.modify", Scope::GmailModify.url());
-        assert_eq!("https://www.googleapis.com/auth/gmail.modify".parse::<Scope>().unwrap(), Scope::GmailModify);
+        assert_eq!(
+            "https://www.googleapis.com/auth/gmail.modify",
+            Scope::GmailModify.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/gmail.modify"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::GmailModify
+        );
     }
     #[test]
     fn test_gmailreadonly() {
-        assert_eq!("https://www.googleapis.com/auth/gmail.readonly", Scope::GmailReadonly.url());
-        assert_eq!("https://www.googleapis.com/auth/gmail.readonly".parse::<Scope>().unwrap(), Scope::GmailReadonly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/gmail.readonly",
+            Scope::GmailReadonly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/gmail.readonly"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::GmailReadonly
+        );
     }
     #[test]
     fn test_gmailsend() {
-        assert_eq!("https://www.googleapis.com/auth/gmail.send", Scope::GmailSend.url());
-        assert_eq!("https://www.googleapis.com/auth/gmail.send".parse::<Scope>().unwrap(), Scope::GmailSend);
+        assert_eq!(
+            "https://www.googleapis.com/auth/gmail.send",
+            Scope::GmailSend.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/gmail.send"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::GmailSend
+        );
     }
     #[test]
     fn test_gmailsettingsbasic() {
-        assert_eq!("https://www.googleapis.com/auth/gmail.settings.basic", Scope::GmailSettingsBasic.url());
-        assert_eq!("https://www.googleapis.com/auth/gmail.settings.basic".parse::<Scope>().unwrap(), Scope::GmailSettingsBasic);
+        assert_eq!(
+            "https://www.googleapis.com/auth/gmail.settings.basic",
+            Scope::GmailSettingsBasic.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/gmail.settings.basic"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::GmailSettingsBasic
+        );
     }
     #[test]
     fn test_gmailsettingssharing() {
-        assert_eq!("https://www.googleapis.com/auth/gmail.settings.sharing", Scope::GmailSettingsSharing.url());
-        assert_eq!("https://www.googleapis.com/auth/gmail.settings.sharing".parse::<Scope>().unwrap(), Scope::GmailSettingsSharing);
+        assert_eq!(
+            "https://www.googleapis.com/auth/gmail.settings.sharing",
+            Scope::GmailSettingsSharing.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/gmail.settings.sharing"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::GmailSettingsSharing
+        );
     }
     #[test]
     fn test_groups() {
-        assert_eq!("https://www.googleapis.com/auth/groups", Scope::Groups.url());
-        assert_eq!("https://www.googleapis.com/auth/groups".parse::<Scope>().unwrap(), Scope::Groups);
+        assert_eq!(
+            "https://www.googleapis.com/auth/groups",
+            Scope::Groups.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/groups"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Groups
+        );
     }
     #[test]
     fn test_loggingadmin() {
-        assert_eq!("https://www.googleapis.com/auth/logging.admin", Scope::LoggingAdmin.url());
-        assert_eq!("https://www.googleapis.com/auth/logging.admin".parse::<Scope>().unwrap(), Scope::LoggingAdmin);
+        assert_eq!(
+            "https://www.googleapis.com/auth/logging.admin",
+            Scope::LoggingAdmin.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/logging.admin"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::LoggingAdmin
+        );
     }
     #[test]
     fn test_loggingread() {
-        assert_eq!("https://www.googleapis.com/auth/logging.read", Scope::LoggingRead.url());
-        assert_eq!("https://www.googleapis.com/auth/logging.read".parse::<Scope>().unwrap(), Scope::LoggingRead);
+        assert_eq!(
+            "https://www.googleapis.com/auth/logging.read",
+            Scope::LoggingRead.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/logging.read"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::LoggingRead
+        );
     }
     #[test]
     fn test_loggingwrite() {
-        assert_eq!("https://www.googleapis.com/auth/logging.write", Scope::LoggingWrite.url());
-        assert_eq!("https://www.googleapis.com/auth/logging.write".parse::<Scope>().unwrap(), Scope::LoggingWrite);
+        assert_eq!(
+            "https://www.googleapis.com/auth/logging.write",
+            Scope::LoggingWrite.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/logging.write"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::LoggingWrite
+        );
     }
     #[test]
     fn test_m8feeds() {
         assert_eq!("https://www.google.com/m8/feeds", Scope::M8Feeds.url());
-        assert_eq!("https://www.google.com/m8/feeds".parse::<Scope>().unwrap(), Scope::M8Feeds);
+        assert_eq!(
+            "https://www.google.com/m8/feeds".parse::<Scope>().unwrap(),
+            Scope::M8Feeds
+        );
     }
     #[test]
     fn test_manufacturercenter() {
-        assert_eq!("https://www.googleapis.com/auth/manufacturercenter", Scope::Manufacturercenter.url());
-        assert_eq!("https://www.googleapis.com/auth/manufacturercenter".parse::<Scope>().unwrap(), Scope::Manufacturercenter);
+        assert_eq!(
+            "https://www.googleapis.com/auth/manufacturercenter",
+            Scope::Manufacturercenter.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/manufacturercenter"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Manufacturercenter
+        );
     }
     #[test]
     fn test_monitoring() {
-        assert_eq!("https://www.googleapis.com/auth/monitoring", Scope::Monitoring.url());
-        assert_eq!("https://www.googleapis.com/auth/monitoring".parse::<Scope>().unwrap(), Scope::Monitoring);
+        assert_eq!(
+            "https://www.googleapis.com/auth/monitoring",
+            Scope::Monitoring.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/monitoring"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Monitoring
+        );
     }
     #[test]
     fn test_monitoringread() {
-        assert_eq!("https://www.googleapis.com/auth/monitoring.read", Scope::MonitoringRead.url());
-        assert_eq!("https://www.googleapis.com/auth/monitoring.read".parse::<Scope>().unwrap(), Scope::MonitoringRead);
+        assert_eq!(
+            "https://www.googleapis.com/auth/monitoring.read",
+            Scope::MonitoringRead.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/monitoring.read"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::MonitoringRead
+        );
     }
     #[test]
     fn test_monitoringwrite() {
-        assert_eq!("https://www.googleapis.com/auth/monitoring.write", Scope::MonitoringWrite.url());
-        assert_eq!("https://www.googleapis.com/auth/monitoring.write".parse::<Scope>().unwrap(), Scope::MonitoringWrite);
+        assert_eq!(
+            "https://www.googleapis.com/auth/monitoring.write",
+            Scope::MonitoringWrite.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/monitoring.write"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::MonitoringWrite
+        );
     }
     #[test]
     fn test_ndevclouddnsreadonly() {
-        assert_eq!("https://www.googleapis.com/auth/ndev.clouddns.readonly", Scope::NdevClouddnsReadonly.url());
-        assert_eq!("https://www.googleapis.com/auth/ndev.clouddns.readonly".parse::<Scope>().unwrap(), Scope::NdevClouddnsReadonly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/ndev.clouddns.readonly",
+            Scope::NdevClouddnsReadonly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/ndev.clouddns.readonly"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::NdevClouddnsReadonly
+        );
     }
     #[test]
     fn test_ndevclouddnsreadwrite() {
-        assert_eq!("https://www.googleapis.com/auth/ndev.clouddns.readwrite", Scope::NdevClouddnsReadwrite.url());
-        assert_eq!("https://www.googleapis.com/auth/ndev.clouddns.readwrite".parse::<Scope>().unwrap(), Scope::NdevClouddnsReadwrite);
+        assert_eq!(
+            "https://www.googleapis.com/auth/ndev.clouddns.readwrite",
+            Scope::NdevClouddnsReadwrite.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/ndev.clouddns.readwrite"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::NdevClouddnsReadwrite
+        );
     }
     #[test]
     fn test_ndevcloudman() {
-        assert_eq!("https://www.googleapis.com/auth/ndev.cloudman", Scope::NdevCloudman.url());
-        assert_eq!("https://www.googleapis.com/auth/ndev.cloudman".parse::<Scope>().unwrap(), Scope::NdevCloudman);
+        assert_eq!(
+            "https://www.googleapis.com/auth/ndev.cloudman",
+            Scope::NdevCloudman.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/ndev.cloudman"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::NdevCloudman
+        );
     }
     #[test]
     fn test_ndevcloudmanreadonly() {
-        assert_eq!("https://www.googleapis.com/auth/ndev.cloudman.readonly", Scope::NdevCloudmanReadonly.url());
-        assert_eq!("https://www.googleapis.com/auth/ndev.cloudman.readonly".parse::<Scope>().unwrap(), Scope::NdevCloudmanReadonly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/ndev.cloudman.readonly",
+            Scope::NdevCloudmanReadonly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/ndev.cloudman.readonly"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::NdevCloudmanReadonly
+        );
     }
     #[test]
     fn test_playmoviespartnerreadonly() {
-        assert_eq!("https://www.googleapis.com/auth/playmovies_partner.readonly", Scope::PlaymoviesPartnerReadonly.url());
-        assert_eq!("https://www.googleapis.com/auth/playmovies_partner.readonly".parse::<Scope>().unwrap(), Scope::PlaymoviesPartnerReadonly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/playmovies_partner.readonly",
+            Scope::PlaymoviesPartnerReadonly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/playmovies_partner.readonly"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::PlaymoviesPartnerReadonly
+        );
     }
     #[test]
     fn test_pluscirclesread() {
-        assert_eq!("https://www.googleapis.com/auth/plus.circles.read", Scope::PlusCirclesRead.url());
-        assert_eq!("https://www.googleapis.com/auth/plus.circles.read".parse::<Scope>().unwrap(), Scope::PlusCirclesRead);
+        assert_eq!(
+            "https://www.googleapis.com/auth/plus.circles.read",
+            Scope::PlusCirclesRead.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/plus.circles.read"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::PlusCirclesRead
+        );
     }
     #[test]
     fn test_pluscircleswrite() {
-        assert_eq!("https://www.googleapis.com/auth/plus.circles.write", Scope::PlusCirclesWrite.url());
-        assert_eq!("https://www.googleapis.com/auth/plus.circles.write".parse::<Scope>().unwrap(), Scope::PlusCirclesWrite);
+        assert_eq!(
+            "https://www.googleapis.com/auth/plus.circles.write",
+            Scope::PlusCirclesWrite.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/plus.circles.write"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::PlusCirclesWrite
+        );
     }
     #[test]
     fn test_pluslogin() {
-        assert_eq!("https://www.googleapis.com/auth/plus.login", Scope::PlusLogin.url());
-        assert_eq!("https://www.googleapis.com/auth/plus.login".parse::<Scope>().unwrap(), Scope::PlusLogin);
+        assert_eq!(
+            "https://www.googleapis.com/auth/plus.login",
+            Scope::PlusLogin.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/plus.login"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::PlusLogin
+        );
     }
     #[test]
     fn test_plusme() {
-        assert_eq!("https://www.googleapis.com/auth/plus.me", Scope::PlusMe.url());
-        assert_eq!("https://www.googleapis.com/auth/plus.me".parse::<Scope>().unwrap(), Scope::PlusMe);
+        assert_eq!(
+            "https://www.googleapis.com/auth/plus.me",
+            Scope::PlusMe.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/plus.me"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::PlusMe
+        );
     }
     #[test]
     fn test_plusmediaupload() {
-        assert_eq!("https://www.googleapis.com/auth/plus.media.upload", Scope::PlusMediaUpload.url());
-        assert_eq!("https://www.googleapis.com/auth/plus.media.upload".parse::<Scope>().unwrap(), Scope::PlusMediaUpload);
+        assert_eq!(
+            "https://www.googleapis.com/auth/plus.media.upload",
+            Scope::PlusMediaUpload.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/plus.media.upload"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::PlusMediaUpload
+        );
     }
     #[test]
     fn test_plusprofilesread() {
-        assert_eq!("https://www.googleapis.com/auth/plus.profiles.read", Scope::PlusProfilesRead.url());
-        assert_eq!("https://www.googleapis.com/auth/plus.profiles.read".parse::<Scope>().unwrap(), Scope::PlusProfilesRead);
+        assert_eq!(
+            "https://www.googleapis.com/auth/plus.profiles.read",
+            Scope::PlusProfilesRead.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/plus.profiles.read"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::PlusProfilesRead
+        );
     }
     #[test]
     fn test_plusstreamread() {
-        assert_eq!("https://www.googleapis.com/auth/plus.stream.read", Scope::PlusStreamRead.url());
-        assert_eq!("https://www.googleapis.com/auth/plus.stream.read".parse::<Scope>().unwrap(), Scope::PlusStreamRead);
+        assert_eq!(
+            "https://www.googleapis.com/auth/plus.stream.read",
+            Scope::PlusStreamRead.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/plus.stream.read"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::PlusStreamRead
+        );
     }
     #[test]
     fn test_plusstreamwrite() {
-        assert_eq!("https://www.googleapis.com/auth/plus.stream.write", Scope::PlusStreamWrite.url());
-        assert_eq!("https://www.googleapis.com/auth/plus.stream.write".parse::<Scope>().unwrap(), Scope::PlusStreamWrite);
+        assert_eq!(
+            "https://www.googleapis.com/auth/plus.stream.write",
+            Scope::PlusStreamWrite.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/plus.stream.write"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::PlusStreamWrite
+        );
     }
     #[test]
     fn test_prediction() {
-        assert_eq!("https://www.googleapis.com/auth/prediction", Scope::Prediction.url());
-        assert_eq!("https://www.googleapis.com/auth/prediction".parse::<Scope>().unwrap(), Scope::Prediction);
+        assert_eq!(
+            "https://www.googleapis.com/auth/prediction",
+            Scope::Prediction.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/prediction"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Prediction
+        );
     }
     #[test]
     fn test_presentations() {
-        assert_eq!("https://www.googleapis.com/auth/presentations", Scope::Presentations.url());
-        assert_eq!("https://www.googleapis.com/auth/presentations".parse::<Scope>().unwrap(), Scope::Presentations);
+        assert_eq!(
+            "https://www.googleapis.com/auth/presentations",
+            Scope::Presentations.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/presentations"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Presentations
+        );
     }
     #[test]
     fn test_presentationsreadonly() {
-        assert_eq!("https://www.googleapis.com/auth/presentations.readonly", Scope::PresentationsReadonly.url());
-        assert_eq!("https://www.googleapis.com/auth/presentations.readonly".parse::<Scope>().unwrap(), Scope::PresentationsReadonly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/presentations.readonly",
+            Scope::PresentationsReadonly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/presentations.readonly"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::PresentationsReadonly
+        );
     }
     #[test]
     fn test_pubsub() {
-        assert_eq!("https://www.googleapis.com/auth/pubsub", Scope::Pubsub.url());
-        assert_eq!("https://www.googleapis.com/auth/pubsub".parse::<Scope>().unwrap(), Scope::Pubsub);
+        assert_eq!(
+            "https://www.googleapis.com/auth/pubsub",
+            Scope::Pubsub.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/pubsub"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Pubsub
+        );
     }
     #[test]
     fn test_replicapool() {
-        assert_eq!("https://www.googleapis.com/auth/replicapool", Scope::Replicapool.url());
-        assert_eq!("https://www.googleapis.com/auth/replicapool".parse::<Scope>().unwrap(), Scope::Replicapool);
+        assert_eq!(
+            "https://www.googleapis.com/auth/replicapool",
+            Scope::Replicapool.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/replicapool"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Replicapool
+        );
     }
     #[test]
     fn test_replicapoolreadonly() {
-        assert_eq!("https://www.googleapis.com/auth/replicapool.readonly", Scope::ReplicapoolReadonly.url());
-        assert_eq!("https://www.googleapis.com/auth/replicapool.readonly".parse::<Scope>().unwrap(), Scope::ReplicapoolReadonly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/replicapool.readonly",
+            Scope::ReplicapoolReadonly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/replicapool.readonly"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::ReplicapoolReadonly
+        );
     }
     #[test]
     fn test_servicemanagement() {
-        assert_eq!("https://www.googleapis.com/auth/service.management", Scope::ServiceManagement.url());
-        assert_eq!("https://www.googleapis.com/auth/service.management".parse::<Scope>().unwrap(), Scope::ServiceManagement);
+        assert_eq!(
+            "https://www.googleapis.com/auth/service.management",
+            Scope::ServiceManagement.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/service.management"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::ServiceManagement
+        );
     }
     #[test]
     fn test_servicemanagementreadonly() {
-        assert_eq!("https://www.googleapis.com/auth/service.management.readonly", Scope::ServiceManagementReadonly.url());
-        assert_eq!("https://www.googleapis.com/auth/service.management.readonly".parse::<Scope>().unwrap(), Scope::ServiceManagementReadonly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/service.management.readonly",
+            Scope::ServiceManagementReadonly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/service.management.readonly"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::ServiceManagementReadonly
+        );
     }
     #[test]
     fn test_servicecontrol() {
-        assert_eq!("https://www.googleapis.com/auth/servicecontrol", Scope::Servicecontrol.url());
-        assert_eq!("https://www.googleapis.com/auth/servicecontrol".parse::<Scope>().unwrap(), Scope::Servicecontrol);
+        assert_eq!(
+            "https://www.googleapis.com/auth/servicecontrol",
+            Scope::Servicecontrol.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/servicecontrol"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Servicecontrol
+        );
     }
     #[test]
     fn test_siteverification() {
-        assert_eq!("https://www.googleapis.com/auth/siteverification", Scope::Siteverification.url());
-        assert_eq!("https://www.googleapis.com/auth/siteverification".parse::<Scope>().unwrap(), Scope::Siteverification);
+        assert_eq!(
+            "https://www.googleapis.com/auth/siteverification",
+            Scope::Siteverification.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/siteverification"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Siteverification
+        );
     }
     #[test]
     fn test_siteverificationverifyonly() {
-        assert_eq!("https://www.googleapis.com/auth/siteverification.verify_only", Scope::SiteverificationVerifyOnly.url());
-        assert_eq!("https://www.googleapis.com/auth/siteverification.verify_only".parse::<Scope>().unwrap(), Scope::SiteverificationVerifyOnly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/siteverification.verify_only",
+            Scope::SiteverificationVerifyOnly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/siteverification.verify_only"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::SiteverificationVerifyOnly
+        );
     }
     #[test]
     fn test_sourcereadonly() {
-        assert_eq!("https://www.googleapis.com/auth/source.read_only", Scope::SourceReadOnly.url());
-        assert_eq!("https://www.googleapis.com/auth/source.read_only".parse::<Scope>().unwrap(), Scope::SourceReadOnly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/source.read_only",
+            Scope::SourceReadOnly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/source.read_only"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::SourceReadOnly
+        );
     }
     #[test]
     fn test_sourcereadwrite() {
-        assert_eq!("https://www.googleapis.com/auth/source.read_write", Scope::SourceReadWrite.url());
-        assert_eq!("https://www.googleapis.com/auth/source.read_write".parse::<Scope>().unwrap(), Scope::SourceReadWrite);
+        assert_eq!(
+            "https://www.googleapis.com/auth/source.read_write",
+            Scope::SourceReadWrite.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/source.read_write"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::SourceReadWrite
+        );
     }
     #[test]
     fn test_spanneradmin() {
-        assert_eq!("https://www.googleapis.com/auth/spanner.admin", Scope::SpannerAdmin.url());
-        assert_eq!("https://www.googleapis.com/auth/spanner.admin".parse::<Scope>().unwrap(), Scope::SpannerAdmin);
+        assert_eq!(
+            "https://www.googleapis.com/auth/spanner.admin",
+            Scope::SpannerAdmin.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/spanner.admin"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::SpannerAdmin
+        );
     }
     #[test]
     fn test_spannerdata() {
-        assert_eq!("https://www.googleapis.com/auth/spanner.data", Scope::SpannerData.url());
-        assert_eq!("https://www.googleapis.com/auth/spanner.data".parse::<Scope>().unwrap(), Scope::SpannerData);
+        assert_eq!(
+            "https://www.googleapis.com/auth/spanner.data",
+            Scope::SpannerData.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/spanner.data"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::SpannerData
+        );
     }
     #[test]
     fn test_spreadsheets() {
-        assert_eq!("https://www.googleapis.com/auth/spreadsheets", Scope::Spreadsheets.url());
-        assert_eq!("https://www.googleapis.com/auth/spreadsheets".parse::<Scope>().unwrap(), Scope::Spreadsheets);
+        assert_eq!(
+            "https://www.googleapis.com/auth/spreadsheets",
+            Scope::Spreadsheets.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/spreadsheets"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Spreadsheets
+        );
     }
     #[test]
     fn test_spreadsheetsreadonly() {
-        assert_eq!("https://www.googleapis.com/auth/spreadsheets.readonly", Scope::SpreadsheetsReadonly.url());
-        assert_eq!("https://www.googleapis.com/auth/spreadsheets.readonly".parse::<Scope>().unwrap(), Scope::SpreadsheetsReadonly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/spreadsheets.readonly",
+            Scope::SpreadsheetsReadonly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/spreadsheets.readonly"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::SpreadsheetsReadonly
+        );
     }
     #[test]
     fn test_sqlserviceadmin() {
-        assert_eq!("https://www.googleapis.com/auth/sqlservice.admin", Scope::SqlserviceAdmin.url());
-        assert_eq!("https://www.googleapis.com/auth/sqlservice.admin".parse::<Scope>().unwrap(), Scope::SqlserviceAdmin);
+        assert_eq!(
+            "https://www.googleapis.com/auth/sqlservice.admin",
+            Scope::SqlserviceAdmin.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/sqlservice.admin"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::SqlserviceAdmin
+        );
     }
     #[test]
     fn test_tagmanagerdeletecontainers() {
-        assert_eq!("https://www.googleapis.com/auth/tagmanager.delete.containers", Scope::TagmanagerDeleteContainers.url());
-        assert_eq!("https://www.googleapis.com/auth/tagmanager.delete.containers".parse::<Scope>().unwrap(), Scope::TagmanagerDeleteContainers);
+        assert_eq!(
+            "https://www.googleapis.com/auth/tagmanager.delete.containers",
+            Scope::TagmanagerDeleteContainers.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/tagmanager.delete.containers"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::TagmanagerDeleteContainers
+        );
     }
     #[test]
     fn test_tagmanagereditcontainers() {
-        assert_eq!("https://www.googleapis.com/auth/tagmanager.edit.containers", Scope::TagmanagerEditContainers.url());
-        assert_eq!("https://www.googleapis.com/auth/tagmanager.edit.containers".parse::<Scope>().unwrap(), Scope::TagmanagerEditContainers);
+        assert_eq!(
+            "https://www.googleapis.com/auth/tagmanager.edit.containers",
+            Scope::TagmanagerEditContainers.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/tagmanager.edit.containers"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::TagmanagerEditContainers
+        );
     }
     #[test]
     fn test_tagmanagereditcontainerversions() {
-        assert_eq!("https://www.googleapis.com/auth/tagmanager.edit.containerversions", Scope::TagmanagerEditContainerversions.url());
-        assert_eq!("https://www.googleapis.com/auth/tagmanager.edit.containerversions".parse::<Scope>().unwrap(), Scope::TagmanagerEditContainerversions);
+        assert_eq!(
+            "https://www.googleapis.com/auth/tagmanager.edit.containerversions",
+            Scope::TagmanagerEditContainerversions.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/tagmanager.edit.containerversions"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::TagmanagerEditContainerversions
+        );
     }
     #[test]
     fn test_tagmanagermanageaccounts() {
-        assert_eq!("https://www.googleapis.com/auth/tagmanager.manage.accounts", Scope::TagmanagerManageAccounts.url());
-        assert_eq!("https://www.googleapis.com/auth/tagmanager.manage.accounts".parse::<Scope>().unwrap(), Scope::TagmanagerManageAccounts);
+        assert_eq!(
+            "https://www.googleapis.com/auth/tagmanager.manage.accounts",
+            Scope::TagmanagerManageAccounts.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/tagmanager.manage.accounts"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::TagmanagerManageAccounts
+        );
     }
     #[test]
     fn test_tagmanagermanageusers() {
-        assert_eq!("https://www.googleapis.com/auth/tagmanager.manage.users", Scope::TagmanagerManageUsers.url());
-        assert_eq!("https://www.googleapis.com/auth/tagmanager.manage.users".parse::<Scope>().unwrap(), Scope::TagmanagerManageUsers);
+        assert_eq!(
+            "https://www.googleapis.com/auth/tagmanager.manage.users",
+            Scope::TagmanagerManageUsers.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/tagmanager.manage.users"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::TagmanagerManageUsers
+        );
     }
     #[test]
     fn test_tagmanagerpublish() {
-        assert_eq!("https://www.googleapis.com/auth/tagmanager.publish", Scope::TagmanagerPublish.url());
-        assert_eq!("https://www.googleapis.com/auth/tagmanager.publish".parse::<Scope>().unwrap(), Scope::TagmanagerPublish);
+        assert_eq!(
+            "https://www.googleapis.com/auth/tagmanager.publish",
+            Scope::TagmanagerPublish.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/tagmanager.publish"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::TagmanagerPublish
+        );
     }
     #[test]
     fn test_tagmanagerreadonly() {
-        assert_eq!("https://www.googleapis.com/auth/tagmanager.readonly", Scope::TagmanagerReadonly.url());
-        assert_eq!("https://www.googleapis.com/auth/tagmanager.readonly".parse::<Scope>().unwrap(), Scope::TagmanagerReadonly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/tagmanager.readonly",
+            Scope::TagmanagerReadonly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/tagmanager.readonly"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::TagmanagerReadonly
+        );
     }
     #[test]
     fn test_taskqueue() {
-        assert_eq!("https://www.googleapis.com/auth/taskqueue", Scope::Taskqueue.url());
-        assert_eq!("https://www.googleapis.com/auth/taskqueue".parse::<Scope>().unwrap(), Scope::Taskqueue);
+        assert_eq!(
+            "https://www.googleapis.com/auth/taskqueue",
+            Scope::Taskqueue.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/taskqueue"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Taskqueue
+        );
     }
     #[test]
     fn test_taskqueueconsumer() {
-        assert_eq!("https://www.googleapis.com/auth/taskqueue.consumer", Scope::TaskqueueConsumer.url());
-        assert_eq!("https://www.googleapis.com/auth/taskqueue.consumer".parse::<Scope>().unwrap(), Scope::TaskqueueConsumer);
+        assert_eq!(
+            "https://www.googleapis.com/auth/taskqueue.consumer",
+            Scope::TaskqueueConsumer.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/taskqueue.consumer"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::TaskqueueConsumer
+        );
     }
     #[test]
     fn test_tasks() {
         assert_eq!("https://www.googleapis.com/auth/tasks", Scope::Tasks.url());
-        assert_eq!("https://www.googleapis.com/auth/tasks".parse::<Scope>().unwrap(), Scope::Tasks);
+        assert_eq!(
+            "https://www.googleapis.com/auth/tasks"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Tasks
+        );
     }
     #[test]
     fn test_tasksreadonly() {
-        assert_eq!("https://www.googleapis.com/auth/tasks.readonly", Scope::TasksReadonly.url());
-        assert_eq!("https://www.googleapis.com/auth/tasks.readonly".parse::<Scope>().unwrap(), Scope::TasksReadonly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/tasks.readonly",
+            Scope::TasksReadonly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/tasks.readonly"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::TasksReadonly
+        );
     }
     #[test]
     fn test_urlshortener() {
-        assert_eq!("https://www.googleapis.com/auth/urlshortener", Scope::Urlshortener.url());
-        assert_eq!("https://www.googleapis.com/auth/urlshortener".parse::<Scope>().unwrap(), Scope::Urlshortener);
+        assert_eq!(
+            "https://www.googleapis.com/auth/urlshortener",
+            Scope::Urlshortener.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/urlshortener"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Urlshortener
+        );
     }
     #[test]
     fn test_useraddressesread() {
-        assert_eq!("https://www.googleapis.com/auth/user.addresses.read", Scope::UserAddressesRead.url());
-        assert_eq!("https://www.googleapis.com/auth/user.addresses.read".parse::<Scope>().unwrap(), Scope::UserAddressesRead);
+        assert_eq!(
+            "https://www.googleapis.com/auth/user.addresses.read",
+            Scope::UserAddressesRead.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/user.addresses.read"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::UserAddressesRead
+        );
     }
     #[test]
     fn test_userbirthdayread() {
-        assert_eq!("https://www.googleapis.com/auth/user.birthday.read", Scope::UserBirthdayRead.url());
-        assert_eq!("https://www.googleapis.com/auth/user.birthday.read".parse::<Scope>().unwrap(), Scope::UserBirthdayRead);
+        assert_eq!(
+            "https://www.googleapis.com/auth/user.birthday.read",
+            Scope::UserBirthdayRead.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/user.birthday.read"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::UserBirthdayRead
+        );
     }
     #[test]
     fn test_useremailsread() {
-        assert_eq!("https://www.googleapis.com/auth/user.emails.read", Scope::UserEmailsRead.url());
-        assert_eq!("https://www.googleapis.com/auth/user.emails.read".parse::<Scope>().unwrap(), Scope::UserEmailsRead);
+        assert_eq!(
+            "https://www.googleapis.com/auth/user.emails.read",
+            Scope::UserEmailsRead.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/user.emails.read"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::UserEmailsRead
+        );
     }
     #[test]
     fn test_userphonenumbersread() {
-        assert_eq!("https://www.googleapis.com/auth/user.phonenumbers.read", Scope::UserPhonenumbersRead.url());
-        assert_eq!("https://www.googleapis.com/auth/user.phonenumbers.read".parse::<Scope>().unwrap(), Scope::UserPhonenumbersRead);
+        assert_eq!(
+            "https://www.googleapis.com/auth/user.phonenumbers.read",
+            Scope::UserPhonenumbersRead.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/user.phonenumbers.read"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::UserPhonenumbersRead
+        );
     }
     #[test]
     fn test_userinfoemail() {
-        assert_eq!("https://www.googleapis.com/auth/userinfo.email", Scope::UserinfoEmail.url());
-        assert_eq!("https://www.googleapis.com/auth/userinfo.email".parse::<Scope>().unwrap(), Scope::UserinfoEmail);
+        assert_eq!(
+            "https://www.googleapis.com/auth/userinfo.email",
+            Scope::UserinfoEmail.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/userinfo.email"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::UserinfoEmail
+        );
     }
     #[test]
     fn test_userinfoprofile() {
-        assert_eq!("https://www.googleapis.com/auth/userinfo.profile", Scope::UserinfoProfile.url());
-        assert_eq!("https://www.googleapis.com/auth/userinfo.profile".parse::<Scope>().unwrap(), Scope::UserinfoProfile);
+        assert_eq!(
+            "https://www.googleapis.com/auth/userinfo.profile",
+            Scope::UserinfoProfile.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/userinfo.profile"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::UserinfoProfile
+        );
     }
     #[test]
     fn test_userlocationbeaconregistry() {
-        assert_eq!("https://www.googleapis.com/auth/userlocation.beacon.registry", Scope::UserlocationBeaconRegistry.url());
-        assert_eq!("https://www.googleapis.com/auth/userlocation.beacon.registry".parse::<Scope>().unwrap(), Scope::UserlocationBeaconRegistry);
+        assert_eq!(
+            "https://www.googleapis.com/auth/userlocation.beacon.registry",
+            Scope::UserlocationBeaconRegistry.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/userlocation.beacon.registry"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::UserlocationBeaconRegistry
+        );
     }
     #[test]
     fn test_webmasters() {
-        assert_eq!("https://www.googleapis.com/auth/webmasters", Scope::Webmasters.url());
-        assert_eq!("https://www.googleapis.com/auth/webmasters".parse::<Scope>().unwrap(), Scope::Webmasters);
+        assert_eq!(
+            "https://www.googleapis.com/auth/webmasters",
+            Scope::Webmasters.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/webmasters"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Webmasters
+        );
     }
     #[test]
     fn test_webmastersreadonly() {
-        assert_eq!("https://www.googleapis.com/auth/webmasters.readonly", Scope::WebmastersReadonly.url());
-        assert_eq!("https://www.googleapis.com/auth/webmasters.readonly".parse::<Scope>().unwrap(), Scope::WebmastersReadonly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/webmasters.readonly",
+            Scope::WebmastersReadonly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/webmasters.readonly"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::WebmastersReadonly
+        );
     }
     #[test]
     fn test_xapizoo() {
-        assert_eq!("https://www.googleapis.com/auth/xapi.zoo", Scope::XapiZoo.url());
-        assert_eq!("https://www.googleapis.com/auth/xapi.zoo".parse::<Scope>().unwrap(), Scope::XapiZoo);
+        assert_eq!(
+            "https://www.googleapis.com/auth/xapi.zoo",
+            Scope::XapiZoo.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/xapi.zoo"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::XapiZoo
+        );
     }
     #[test]
     fn test_youtube() {
-        assert_eq!("https://www.googleapis.com/auth/youtube", Scope::Youtube.url());
-        assert_eq!("https://www.googleapis.com/auth/youtube".parse::<Scope>().unwrap(), Scope::Youtube);
+        assert_eq!(
+            "https://www.googleapis.com/auth/youtube",
+            Scope::Youtube.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/youtube"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Youtube
+        );
     }
     #[test]
     fn test_youtubeforcessl() {
-        assert_eq!("https://www.googleapis.com/auth/youtube.force-ssl", Scope::YoutubeForceSsl.url());
-        assert_eq!("https://www.googleapis.com/auth/youtube.force-ssl".parse::<Scope>().unwrap(), Scope::YoutubeForceSsl);
+        assert_eq!(
+            "https://www.googleapis.com/auth/youtube.force-ssl",
+            Scope::YoutubeForceSsl.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/youtube.force-ssl"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::YoutubeForceSsl
+        );
     }
     #[test]
     fn test_youtubereadonly() {
-        assert_eq!("https://www.googleapis.com/auth/youtube.readonly", Scope::YoutubeReadonly.url());
-        assert_eq!("https://www.googleapis.com/auth/youtube.readonly".parse::<Scope>().unwrap(), Scope::YoutubeReadonly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/youtube.readonly",
+            Scope::YoutubeReadonly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/youtube.readonly"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::YoutubeReadonly
+        );
     }
     #[test]
     fn test_youtubeupload() {
-        assert_eq!("https://www.googleapis.com/auth/youtube.upload", Scope::YoutubeUpload.url());
-        assert_eq!("https://www.googleapis.com/auth/youtube.upload".parse::<Scope>().unwrap(), Scope::YoutubeUpload);
+        assert_eq!(
+            "https://www.googleapis.com/auth/youtube.upload",
+            Scope::YoutubeUpload.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/youtube.upload"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::YoutubeUpload
+        );
     }
     #[test]
     fn test_youtubepartner() {
-        assert_eq!("https://www.googleapis.com/auth/youtubepartner", Scope::Youtubepartner.url());
-        assert_eq!("https://www.googleapis.com/auth/youtubepartner".parse::<Scope>().unwrap(), Scope::Youtubepartner);
+        assert_eq!(
+            "https://www.googleapis.com/auth/youtubepartner",
+            Scope::Youtubepartner.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/youtubepartner"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::Youtubepartner
+        );
     }
     #[test]
     fn test_youtubepartnerchannelaudit() {
-        assert_eq!("https://www.googleapis.com/auth/youtubepartner-channel-audit", Scope::YoutubepartnerChannelAudit.url());
-        assert_eq!("https://www.googleapis.com/auth/youtubepartner-channel-audit".parse::<Scope>().unwrap(), Scope::YoutubepartnerChannelAudit);
+        assert_eq!(
+            "https://www.googleapis.com/auth/youtubepartner-channel-audit",
+            Scope::YoutubepartnerChannelAudit.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/youtubepartner-channel-audit"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::YoutubepartnerChannelAudit
+        );
     }
     #[test]
     fn test_ytanalyticsmonetaryreadonly() {
-        assert_eq!("https://www.googleapis.com/auth/yt-analytics-monetary.readonly", Scope::YtAnalyticsMonetaryReadonly.url());
-        assert_eq!("https://www.googleapis.com/auth/yt-analytics-monetary.readonly".parse::<Scope>().unwrap(), Scope::YtAnalyticsMonetaryReadonly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/yt-analytics-monetary.readonly",
+            Scope::YtAnalyticsMonetaryReadonly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/yt-analytics-monetary.readonly"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::YtAnalyticsMonetaryReadonly
+        );
     }
     #[test]
     fn test_ytanalyticsreadonly() {
-        assert_eq!("https://www.googleapis.com/auth/yt-analytics.readonly", Scope::YtAnalyticsReadonly.url());
-        assert_eq!("https://www.googleapis.com/auth/yt-analytics.readonly".parse::<Scope>().unwrap(), Scope::YtAnalyticsReadonly);
+        assert_eq!(
+            "https://www.googleapis.com/auth/yt-analytics.readonly",
+            Scope::YtAnalyticsReadonly.url()
+        );
+        assert_eq!(
+            "https://www.googleapis.com/auth/yt-analytics.readonly"
+                .parse::<Scope>()
+                .unwrap(),
+            Scope::YtAnalyticsReadonly
+        );
     }
 }

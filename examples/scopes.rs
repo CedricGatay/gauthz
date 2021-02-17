@@ -402,11 +402,9 @@ fn main() {
         println!("        assert_eq!(\"{}\", Scope::{}.url());", v, k);
         println!(
             "        assert_eq!(\"{}\".parse::<Scope>().unwrap(), Scope::{});",
-            v,
-            k
+            v, k
         );
         println!("    }}");
     }
     println!("}}");
-
 }

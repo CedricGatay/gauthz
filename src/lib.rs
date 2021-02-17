@@ -55,10 +55,10 @@ use std::fs::File;
 use std::io::Read;
 use std::time::{Duration, Instant};
 
-use futures::{Future as StdFuture, Stream as StdStream, future, stream};
-use hyper::{Client as HyperClient, Method, Request, Body};
+use futures::{Stream as StdStream};
 use hyper::client::connect::Connect;
-use hyper::client::{HttpConnector};
+use hyper::client::HttpConnector;
+use hyper::{Body, Client as HyperClient, Method, Request};
 
 #[cfg(feature = "tls")]
 use hyper_tls::HttpsConnector;
@@ -72,11 +72,9 @@ pub use error::{Error, Result};
 mod scope;
 
 pub use scope::*;
-use std::pin::Pin;
-
 
 /// A `Stream` with an error type pinned to `gauthz::Error`
-pub type Stream<T> = Box<StdStream<Item=T>>;
+pub type Stream<T> = Box<dyn StdStream<Item = T>>;
 
 const TOKEN_URL: &str = "https://www.googleapis.com/oauth2/v4/token";
 
@@ -102,14 +100,15 @@ impl Credentials {
         Self::from_reader(file)
     }
     /// Convenience method for parsing credentials from json str
+    #[allow(clippy::should_implement_trait)]
     pub fn from_str(s: &str) -> Result<Credentials> {
         serde_json::from_str(s).map_err(Error::from)
     }
     /// Convenience method for parsing credentials from a reader
     /// ( i.e. a `std::fs:File` )
     pub fn from_reader<R>(r: R) -> Result<Credentials>
-        where
-            R: Read,
+    where
+        R: Read,
     {
         serde_json::from_reader(r).map_err(Error::from)
     }
@@ -172,8 +171,8 @@ impl AccessToken {
 /// provide access to multiple apis
 #[derive(Clone)]
 pub struct Tokens<C>
-    where
-        C: Connect + Clone + Send + Sync,
+where
+    C: Connect + Clone + Send + Sync,
 {
     http: HyperClient<C>,
     credentials: Credentials,
@@ -186,17 +185,12 @@ impl Tokens<HttpsConnector<HttpConnector>> {
     /// preconfigured for tls.
     ///
     /// For client customization use `Tokens::custom` instead
-    pub fn new<Iter>(
-credentials: Credentials,
-scopes: Iter,
-    ) -> Self
-        where
-            Iter: ::std::iter::IntoIterator<Item=Scope>,
+    pub fn new<Iter>(credentials: Credentials, scopes: Iter) -> Self
+    where
+        Iter: ::std::iter::IntoIterator<Item = Scope>,
     {
         let connector = HttpsConnector::new();
-        let hyper = HyperClient::builder()
-            .keep_alive(true)
-            .build(connector);
+        let hyper = HyperClient::builder().build(connector);
         Tokens::custom(hyper, credentials, scopes)
     }
 }
@@ -209,8 +203,8 @@ impl<C: 'static + Connect + Clone + Send + Sync> Tokens<C> {
         credentials: Credentials,
         scopes: Iter,
     ) -> Self
-        where
-            Iter: ::std::iter::IntoIterator<Item=Scope>,
+    where
+        Iter: ::std::iter::IntoIterator<Item = Scope>,
     {
         Self {
             http,
@@ -278,8 +272,8 @@ impl<C: 'static + Connect + Clone + Send + Sync> Tokens<C> {
                 iss: self.credentials.clone().client_email,
                 scope: self.scopes.clone(),
                 aud: TOKEN_URL.into(),
-                exp: exp,
-                iat: iat,
+                exp,
+                iat,
             }),
             ..Default::default()
         };
@@ -290,36 +284,36 @@ impl<C: 'static + Connect + Clone + Send + Sync> Tokens<C> {
             "grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&assertion={assertion}",
             assertion = signed.as_str()
         ));
-        let req = Request::builder().uri(TOKEN_URL).method(Method::POST)
+        Request::builder()
+            .uri(TOKEN_URL)
+            .method(Method::POST)
             .header("Content-Type", "application/x-www-form-urlencoded")
-            .body(body).unwrap();
-        req
+            .body(body)
+            .unwrap()
     }
 
     /// Returns a `Future` yielding a new `AccessToken`
     pub async fn get(&self) -> Result<AccessToken> {
-        let response = self.http
-            .request(self.new_request()).await
+        let response = self
+            .http
+            .request(self.new_request())
+            .await
             .map_err(|e| Error::from(e.to_string()))?;
         let status = response.status();
-        let bytes = hyper::body::to_bytes(response).await?;
-        serde_json::from_slice::<AccessToken>(&bytes)
-            .map_err(|err| ErrorKind::Codec(err).into())
-            .map(AccessToken::start)
-        /*let body = response.body();//concat2().map_err(Error::from);
-        body.and_then(move |body| if status.is_success() {
-            serde_json::from_str::<AccessToken>(&body)
+        let bytes =
+            hyper::body::to_bytes(response).await.map_err(Error::from)?;
+        if status.is_success() {
+            serde_json::from_slice::<AccessToken>(&bytes)
                 .map_err(|err| ErrorKind::Codec(err).into())
                 .map(AccessToken::start)
         } else {
-            Err(match serde_json::from_str::<ApiError>(&body) {
+            Err(match serde_json::from_slice::<ApiError>(&bytes) {
                 Err(err) => ErrorKind::Codec(err).into(),
                 Ok(err) => {
-                    ErrorKind::Api(err.error, err.error_description)
-                        .into()
+                    ErrorKind::Api(err.error, err.error_description).into()
                 }
             })
-        })*/
+        }
     }
 }
 
@@ -327,7 +321,6 @@ impl<C: 'static + Connect + Clone + Send + Sync> Tokens<C> {
 mod tests {
     use super::AccessToken;
     use std::time::Duration;
-
 
     #[test]
     fn tokens_value() {
@@ -345,7 +338,8 @@ mod tests {
             access_token: "test".into(),
             expires_in: 1,
             ..Default::default()
-        }.start();
+        }
+        .start();
         assert!(!token.expired());
         let duration = Duration::from_secs(1);
         assert_eq!(token.duration, Some(duration));
