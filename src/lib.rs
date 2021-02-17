@@ -35,7 +35,6 @@
 //! This crate has one Cargo feature, `tls`, which adds HTTPS support via the `Tokens::new`
 //! constructor. This feature is enabled by default.
 #![warn(missing_docs)]
-#![feature(async_closure)]
 
 #[macro_use]
 extern crate serde_derive;
