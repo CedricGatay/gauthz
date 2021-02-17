@@ -6,32 +6,27 @@
 //!
 //! ```no_run
 //! // gauthz interfaces
-//! extern crate gauthz;
-//! // tokio async io
-//! extern crate tokio_core;
-//! // futures combinators
 //! extern crate futures;
+//! extern crate gauthz;
+//! use futures::Future;
 //!
-//! use futures::Stream;
-//! use gauthz::{Credentials, Scope, Tokens};
-//! use tokio_core::reactor::Core;
-//! use std::thread::sleep_ms;
+//! use gauthz::{Credentials, Result, Scope, Tokens};
 //!
-//! fn main() {
-//!   let mut core = Core::new().unwrap();
-//!   let tokens = Tokens::new(
-//!      &core.handle(),
-//!      Credentials::default().unwrap(),
-//!     vec![Scope::CloudPlatform],
-//!   );
+//! async fn run() -> Result<String> {
+//!     let tokens = Tokens::new(
+//!         Credentials::default().unwrap(),
+//!         vec![Scope::CloudPlatform],
+//!     );
+//!     let access_token = tokens.get().await;
+//!     access_token.map(|t| t.value().to_owned())
+//! }
 //!
-//!   // warning: this token dispenser never ends!
-//!   let dispenser = tokens.stream().for_each(|token| {
-//!       println!("{}", token.value());
-//!       Ok(sleep_ms(2000)) // do something interesting
-//!    });
-//!
-//!   println!("{:#?}", core.run(dispenser))
+//! #[tokio::main]
+//! async fn main() {
+//!     match run().await {
+//!         Ok(ok) => println!("{}", ok),
+//!         Err(err) => println!("{}", err),
+//!     }
 //! }
 //! ```
 //!
@@ -53,7 +48,7 @@ extern crate futures;
 extern crate hyper;
 #[cfg(feature = "tls")]
 extern crate hyper_tls;
-extern crate tokio_core;
+extern crate tokio;
 
 use std::env;
 use std::fs::File;
@@ -68,7 +63,6 @@ use hyper::client::{HttpConnector};
 #[cfg(feature = "tls")]
 use hyper_tls::HttpsConnector;
 use medallion::{Algorithm, Header, Payload, Token};
-use tokio_core::reactor::Handle;
 
 pub mod error;
 
@@ -80,8 +74,6 @@ mod scope;
 pub use scope::*;
 use std::pin::Pin;
 
-/// A `Future` with an error type pinned to `gauthz::Error`
-pub type Future<T> = Box<StdFuture<Output=T>>;
 
 /// A `Stream` with an error type pinned to `gauthz::Error`
 pub type Stream<T> = Box<StdStream<Item=T>>;
@@ -181,7 +173,7 @@ impl AccessToken {
 #[derive(Clone)]
 pub struct Tokens<C>
     where
-        C: 'static + Connect + Clone + Send + Sync,
+        C: Connect + Clone + Send + Sync,
 {
     http: HyperClient<C>,
     credentials: Credentials,
@@ -195,16 +187,14 @@ impl Tokens<HttpsConnector<HttpConnector>> {
     ///
     /// For client customization use `Tokens::custom` instead
     pub fn new<Iter>(
-        handle: &Handle,
-        credentials: Credentials,
-        scopes: Iter,
+credentials: Credentials,
+scopes: Iter,
     ) -> Self
         where
             Iter: ::std::iter::IntoIterator<Item=Scope>,
     {
         let connector = HttpsConnector::new();
         let hyper = HyperClient::builder()
-            //.connector(connector)
             .keep_alive(true)
             .build(connector);
         Tokens::custom(hyper, credentials, scopes)
@@ -232,50 +222,50 @@ impl<C: 'static + Connect + Clone + Send + Sync> Tokens<C> {
                 .join(","),
         }
     }
-/*
-    /// Returns a `Stream` of `AccessTokens`. The same `AccessToken` will be
-    /// yielded multiple times until it is expired. After which, a new token
-    /// will be fetched
-    pub fn stream(&self) -> Stream<AccessToken> {
-        let instance = self.clone();
-        let tokens =
-            stream::unfold(None, async move |state: Option<AccessToken>| -> Option<(AccessToken, Option<AccessToken>)>{
-                let instance = instance.clone();
-                match state {
-                    Some(ref token) if !token.expired() => {
-                        Some((token.clone(), state.clone()))
-                    },
-                    _ => {
-                        let token = instance.get().await.ok()?;
-                        let next = Some(token.clone());
-                        Some((token.clone(), next))
-
-                        //future::ok((None, state.clone())).await.ok()
-                    }
-                }
-            });
-        /*
-            stream::unfold::<
-                _,
-                _,
-                Future<(AccessToken, Option<AccessToken>)>,
-                _,
-            >(None, move |state| {
-                match state {
-                    Some(ref token) if !token.expired() => {
-                        Box::new(future::ok((token.clone(), state.clone())))
-                    }
-                    _ => {
-                        Box::new(async {instance.get().await.map(|token| {
+    /*
+        /// Returns a `Stream` of `AccessTokens`. The same `AccessToken` will be
+        /// yielded multiple times until it is expired. After which, a new token
+        /// will be fetched
+        pub fn stream(&self) -> Stream<AccessToken> {
+            let instance = self.clone();
+            let tokens =
+                stream::unfold(None, async move |state: Option<AccessToken>| -> Option<(AccessToken, Option<AccessToken>)>{
+                    let instance = instance.clone();
+                    match state {
+                        Some(ref token) if !token.expired() => {
+                            Some((token.clone(), state.clone()))
+                        },
+                        _ => {
+                            let token = instance.get().await.ok()?;
                             let next = Some(token.clone());
-                            (token, next)
-                        }).unwrap()})
+                            Some((token.clone(), next))
+
+                            //future::ok((None, state.clone())).await.ok()
+                        }
                     }
-                }
-            });*/
-        Box::new(tokens)
-    }
-*/
+                });
+            /*
+                stream::unfold::<
+                    _,
+                    _,
+                    Future<(AccessToken, Option<AccessToken>)>,
+                    _,
+                >(None, move |state| {
+                    match state {
+                        Some(ref token) if !token.expired() => {
+                            Box::new(future::ok((token.clone(), state.clone())))
+                        }
+                        _ => {
+                            Box::new(async {instance.get().await.map(|token| {
+                                let next = Some(token.clone());
+                                (token, next)
+                            }).unwrap()})
+                        }
+                    }
+                });*/
+            Box::new(tokens)
+        }
+    */
     fn new_request(&self) -> Request<Body> {
         let header: Header<()> = Header {
             alg: Algorithm::RS256,
@@ -307,31 +297,29 @@ impl<C: 'static + Connect + Clone + Send + Sync> Tokens<C> {
     }
 
     /// Returns a `Future` yielding a new `AccessToken`
-    pub fn get(&'static self) -> Pin<Box<StdFuture<Output = Result<AccessToken>>>> {
-        Box::pin(async move {
-            let response = self.http
-                .request(self.new_request()).await
-                .map_err(|e| Error::from(e.to_string()))?;
-            let status = response.status();
-            let bytes = hyper::body::to_bytes(response).await?;
-            serde_json::from_slice::<AccessToken>(&bytes)
+    pub async fn get(&self) -> Result<AccessToken> {
+        let response = self.http
+            .request(self.new_request()).await
+            .map_err(|e| Error::from(e.to_string()))?;
+        let status = response.status();
+        let bytes = hyper::body::to_bytes(response).await?;
+        serde_json::from_slice::<AccessToken>(&bytes)
+            .map_err(|err| ErrorKind::Codec(err).into())
+            .map(AccessToken::start)
+        /*let body = response.body();//concat2().map_err(Error::from);
+        body.and_then(move |body| if status.is_success() {
+            serde_json::from_str::<AccessToken>(&body)
                 .map_err(|err| ErrorKind::Codec(err).into())
                 .map(AccessToken::start)
-                    /*let body = response.body();//concat2().map_err(Error::from);
-                    body.and_then(move |body| if status.is_success() {
-                        serde_json::from_str::<AccessToken>(&body)
-                            .map_err(|err| ErrorKind::Codec(err).into())
-                            .map(AccessToken::start)
-                    } else {
-                        Err(match serde_json::from_str::<ApiError>(&body) {
-                            Err(err) => ErrorKind::Codec(err).into(),
-                            Ok(err) => {
-                                ErrorKind::Api(err.error, err.error_description)
-                                    .into()
-                            }
-                        })
-                    })*/
-        })
+        } else {
+            Err(match serde_json::from_str::<ApiError>(&body) {
+                Err(err) => ErrorKind::Codec(err).into(),
+                Ok(err) => {
+                    ErrorKind::Api(err.error, err.error_description)
+                        .into()
+                }
+            })
+        })*/
     }
 }
 
