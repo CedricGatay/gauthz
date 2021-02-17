@@ -1,7 +1,7 @@
 [package]
 name = "gauthz"
-version = "0.1.0"
-authors = ["softprops <d.tangren@gmail.com>"]
+version = "0.2.0"
+authors = ["softprops <d.tangren@gmail.com>", "Cedric Gatay <c.gatay@code-troopers.com"]
 description = "Google API authentication crate"
 documentation = "https://softprops.github.io/gauthz"
 homepage = "https://github.com/softprops/gauthz"
